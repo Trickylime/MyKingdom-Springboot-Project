@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light mb-3 p-1">
+    <div class="collapse navbar-collapse justify-content-center">
+    |
+        <ul class="navbar-nav">
+            <li class="nav-item">  Gold: ${gold}  </li>
+        </ul>
+    |
+        <ul class="navbar-nav">
+            <li class="nav-item">  Food: ${food}  </li>
+        </ul>
+    |
+        <ul class="navbar-nav">
+            <li class="nav-item">  Battle Turns: ${battleturns}  </li>
+        </ul>
+    |
+        <ul class="navbar-nav">
+            <li class="nav-item">  Next Turn: 10:00  </li>
+        </ul>
+    |
+    </div>
+</nav>
