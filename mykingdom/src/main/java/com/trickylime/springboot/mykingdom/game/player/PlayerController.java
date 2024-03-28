@@ -4,9 +4,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -23,17 +23,12 @@ public class PlayerController {
     public String ListPlayerStats(ModelMap model) {
 
         String username = getLoggedInUsername(model);
-        List<Player> player = playerService.findByUsername(username);
+        List<Player> playerList = playerService.findByUsername(username);
+        Player player = playerList.get(0);
 
-        model.put("gold", player.get(0).getGold());
-        model.put("food", player.get(0).getFood());
-        model.put("battleturns", player.get(0).getBattleTurns());
+        model.put("player", player);
 
-        model.put("attack", player.get(0).getAttack());
-        model.put("defense", player.get(0).getDefense());
-        model.put("spy", player.get(0).getSpy());
-
-       return "main";
+        return "main";
     }
 
     @RequestMapping(value = "villagers", method = RequestMethod.GET)
@@ -43,25 +38,21 @@ public class PlayerController {
         List<Player> playerList = playerService.findByUsername(username);
         Player player = playerList.get(0);
 
-        model.put("food", player.getFood());
+        model.put("player", player);
 
-        model.put("workers", player.getWorkers());
-        model.put("farmers", player.getFarmers());
-        model.put("spies", player.getSpies());
-
-        model.addAttribute("supplyForm", new VillagerSupplyForm());
 
         return "villagers";
     }
 
     @RequestMapping(value = "villagers", method = RequestMethod.POST)
-    public String addVillagers(@ModelAttribute VillagerSupplyForm supplyForm, ModelMap model) {
+    public String addVillagers(@RequestParam int workers, @RequestParam int farmers,
+                               @RequestParam int spies, ModelMap model) {
 
         String username = getLoggedInUsername(model);
         List<Player> playerList = playerService.findByUsername(username);
         Player player = playerList.get(0);
 
-        playerService.addVillagers(player, supplyForm.getWorkers(), supplyForm.getFarmers(), supplyForm.getSpies());
+        playerService.addVillagers(player, workers, farmers, spies);
 
         return "redirect:villagers";
     }

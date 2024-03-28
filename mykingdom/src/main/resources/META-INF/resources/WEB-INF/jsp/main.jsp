@@ -18,15 +18,15 @@
     <h1>Army Statistics</h1>
     <div class="row">
         <div class="col-md-3"><b>Attack</b></div>
-        <div class="col-md-4">${attack}</div>
+        <div class="col-md-4">${player.attack}</div>
         <div class="col-md-5">Rank: #1</div>
 
         <div class="col-md-3"><b>Defense</b></div>
-        <div class="col-md-4">${defense}</div>
+        <div class="col-md-4">${player.defense}</div>
         <div class="col-md-5">Rank: #1</div>
 
         <div class="col-md-3"><b>Espionage</b></div>
-        <div class="col-md-4">${spy}</div>
+        <div class="col-md-4">${player.spy}</div>
         <div class="col-md-5">Rank: #1</div>
     </div>
 
@@ -36,13 +36,13 @@
     <h1>Economy Statistics</h1>
     <div class="row">
         <div class="col-md-3"><b>Current Gold</b></div>
-        <div class="col-md-9">${gold}</div>
+        <div class="col-md-9">${player.gold}</div>
 
         <div class="col-md-3"><b>Gold Income</b></div>
         <div class="col-md-9">0</div>
 
         <div class="col-md-3"><b>Current Food</b></div>
-        <div class="col-md-9">${food}</div>
+        <div class="col-md-9">${player.food}</div>
 
         <div class="col-md-3"><b>Farming Income</b></div>
         <div class="col-md-9">0</div>
@@ -50,7 +50,7 @@
     </br>
     <div class="row">
         <div class="col-md-3"><b>Battle Turns</b></div>
-        <div class="col-md-9">${battleturns}</div>
+        <div class="col-md-9">${player.battleTurns}</div>
     </div>
 
     </br>

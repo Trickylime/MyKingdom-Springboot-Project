@@ -14,7 +14,7 @@
 
     </br>
 
-    <div><b>Current Food Supply:</b> ${food}</div>
+    <div><b>Current Food Supply:</b> ${player.food}</div>
 
     </br>
 
@@ -31,27 +31,21 @@
             <tbody>
                 <tr>
                     <td>Workers</td>
-                    <td th:text="${workers}">${workers}</td>
+                    <td>${player.workers}</td>
                     <td>20 Food</td>
-                    <td>
-                        <td><input type="number" id="workersInput" value="0" required min="0" max="9999" size="10"/></td>
-                    </td>
+                    <td><input type="number" id="workers" name="workers" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
                 <tr>
                     <td>Farmers</td>
-                    <td th:text="${farmers}">${farmers}</td>
+                    <td>${player.farmers}</td>
                     <td>20 Food</td>
-                    <td>
-                        <td><input type="number" id="farmersInput" value="0" required min="0" max="9999" size="10"/></td>
-                    </td>
+                    <td><input type="number" id="farmers" name="farmers" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
                 <tr>
                     <td>Spies</td>
-                    <td th:text="${spies}">${spies}</td>
+                    <td>${player.spies}</td>
                     <td>20 Food</td>
-                    <td>
-                        <td><input type="number" id="spiesInput" value="0" required min="0" max="9999" size="10"/></td>
-                    </td>
+                    <td><input type="number" id="spies" name="spies" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
                 <tr>
                     <td></td>

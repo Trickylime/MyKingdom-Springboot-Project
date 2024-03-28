@@ -35,13 +35,17 @@ public class PlayerService {
         return player;
     }
 
-    public Player addVillagers(Player player, int workers, int farmers, int spies) {
+    public boolean addVillagers(Player player, int workers, int farmers, int spies) {
 
-        System.out.printf("Workers: %d. Farmers %d. Spies: %d%n", workers, farmers, spies);
-        player.setWorkers(workers);
-        player.setFarmers(farmers);
-        player.setSpies(spies);
+        int totalSpend = workers + farmers + spies;
+        if(totalSpend < player.getFood()) {
+            player.setWorkers(workers);
+            player.setFarmers(farmers);
+            player.setSpies(spies);
 
-        return player;
+            return true;
+        }
+
+        return false;
     }
 }

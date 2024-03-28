@@ -2,15 +2,15 @@
     <div class="collapse navbar-collapse justify-content-center">
     |
         <ul class="navbar-nav">
-            <li class="nav-item">  Gold: ${gold}  </li>
+            <li class="nav-item">  Gold: ${player.gold}  </li>
         </ul>
     |
         <ul class="navbar-nav">
-            <li class="nav-item">  Food: ${food}  </li>
+            <li class="nav-item">  Food: ${player.food}  </li>
         </ul>
     |
         <ul class="navbar-nav">
-            <li class="nav-item">  Battle Turns: ${battleturns}  </li>
+            <li class="nav-item">  Battle Turns: ${player.battleTurns}  </li>
         </ul>
     |
         <ul class="navbar-nav">
