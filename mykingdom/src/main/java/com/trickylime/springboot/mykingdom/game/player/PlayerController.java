@@ -52,7 +52,9 @@ public class PlayerController {
         List<Player> playerList = playerService.findByUsername(username);
         Player player = playerList.get(0);
 
-        playerService.addVillagers(player, workers, farmers, spies);
+        if (playerService.addVillagers(player, workers, farmers, spies)) {
+            //error message
+        }
 
         return "redirect:villagers";
     }

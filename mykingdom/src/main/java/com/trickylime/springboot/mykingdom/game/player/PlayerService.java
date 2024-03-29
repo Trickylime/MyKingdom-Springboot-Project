@@ -37,11 +37,13 @@ public class PlayerService {
 
     public boolean addVillagers(Player player, int workers, int farmers, int spies) {
 
-        int totalSpend = workers + farmers + spies;
-        if(totalSpend < player.getFood()) {
+        int totalSpend = (workers + farmers + spies) * 20;
+        if(totalSpend <= player.getFood()) {
             player.setWorkers(workers);
             player.setFarmers(farmers);
             player.setSpies(spies);
+
+            player.setFood(-totalSpend);
 
             return true;
         }

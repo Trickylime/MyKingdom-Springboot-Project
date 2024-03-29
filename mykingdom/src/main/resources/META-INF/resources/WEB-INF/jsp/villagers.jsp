@@ -18,7 +18,7 @@
 
     </br>
 
-    <form:form method="post" modelAttribute="supplyForm">
+    <form:form method="post">
         <table class="table">
             <thead>
                 <tr>
