@@ -35,7 +35,7 @@ public class PlayerService {
         return player;
     }
 
-    public boolean addVillagers(Player player, int workers, int farmers, int spies) {
+    public boolean buyVillagers(Player player, int workers, int farmers, int spies) {
 
         int totalSpend = (workers + farmers + spies) * 20;
         if(totalSpend <= player.getFood()) {
@@ -44,6 +44,22 @@ public class PlayerService {
             player.setSpies(spies);
 
             player.setFood(-totalSpend);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean sellVillagers(Player player, int workers, int farmers, int spies) {
+
+        if (player.getWorkers() >= workers && player.getFarmers() >= farmers && player.getSpies() >= spies) {
+            player.setWorkers(-workers);
+            player.setFarmers(-farmers);
+            player.setSpies(-spies);
+
+            int refundFood = (workers + farmers + spies) * 15;
+            player.setFood(refundFood);
 
             return true;
         }

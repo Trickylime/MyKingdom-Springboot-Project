@@ -22,9 +22,7 @@ public class PlayerController {
     @RequestMapping("main")
     public String ListPlayerStats(ModelMap model) {
 
-        String username = getLoggedInUsername(model);
-        List<Player> playerList = playerService.findByUsername(username);
-        Player player = playerList.get(0);
+        Player player = getLoggedInUser();
 
         model.put("player", player);
 
@@ -32,36 +30,65 @@ public class PlayerController {
     }
 
     @RequestMapping(value = "villagers", method = RequestMethod.GET)
-    public String listCurrentVillagers(ModelMap model) {
+    public String villagersPage(ModelMap model) {
 
-        String username = getLoggedInUsername(model);
-        List<Player> playerList = playerService.findByUsername(username);
-        Player player = playerList.get(0);
-
+        Player player = getLoggedInUser();
         model.put("player", player);
-
 
         return "villagers";
     }
 
-    @RequestMapping(value = "villagers", method = RequestMethod.POST)
-    public String addVillagers(@RequestParam int workers, @RequestParam int farmers,
-                               @RequestParam int spies, ModelMap model) {
 
-        String username = getLoggedInUsername(model);
-        List<Player> playerList = playerService.findByUsername(username);
-        Player player = playerList.get(0);
+    @RequestMapping(value = "buyVillagers", method = RequestMethod.POST)
+    public String buyVillagers(@RequestParam int workers, @RequestParam int farmers, @RequestParam int spies,
+                               ModelMap model) {
 
-        if (playerService.addVillagers(player, workers, farmers, spies)) {
-            //error message
+        Player player = getLoggedInUser();
+
+        if (playerService.buyVillagers(player, workers, farmers, spies)) {
+            System.out.println("Buying");
+            return "redirect:villagers";
+        } else {
+            model.put("errorMessage", "Insufficient food. Please try again.");
+            model.put("player", player);
+
+            return "villagers";
         }
-
-        return "redirect:villagers";
     }
 
-    private String getLoggedInUsername(ModelMap model) {
+    @RequestMapping(value = "sellVillagers", method = RequestMethod.POST)
+    public String sellVillagers(@RequestParam int workers, @RequestParam int farmers, @RequestParam int spies,
+                                ModelMap model) {
+
+        Player player = getLoggedInUser();
+
+        if (playerService.sellVillagers(player, workers, farmers, spies)) {
+            System.out.println("Selling");
+            return "redirect:villagers";
+        } else {
+            model.put("errorMessage", "Insufficient villagers. Please try again.");
+            model.put("player", player);
+
+            return "villagers";
+        }
+    }
+
+    @RequestMapping(value = "soldiers", method = RequestMethod.GET)
+    public String soldiersPage(ModelMap model) {
+
+        Player player = getLoggedInUser();
+        model.put("player", player);
+
+        return "soldiers";
+    }
+
+    private Player getLoggedInUser() {
         Authentication authentication =
                 SecurityContextHolder.getContext().getAuthentication();
-        return authentication.getName();
+
+        String username = authentication.getName();
+        List<Player> playerList = playerService.findByUsername(username);
+
+        return playerList.get(0);
     }
 }
