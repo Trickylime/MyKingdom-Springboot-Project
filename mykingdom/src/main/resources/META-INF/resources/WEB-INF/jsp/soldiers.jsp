@@ -3,13 +3,12 @@
 <%@ include file="common/player-resource-bar.jspf" %>
 <div class="container">
 
-    <h1>Villagers</h1>
+    <h1>Soldiers</h1>
 
     <div>
-        Spend your food to hire new villagers for your kingdom. </br>
-        > Workers increase your income.</br>
-        > Farmers increase your food production.</br>
-        > Spies increase your espionage power.
+        Spend your food to hire new Soldiers for your kingdom. </br>
+        > Attackers increase your attack power.</br>
+        > Defenders increase your defense power.</br>
     </div>
 
     </br>
@@ -23,40 +22,31 @@
 
     </br>
 
-    <form:form method="post" action="buyVillagers">
+    <form:form method="post" action="hireApprentice">
         <table class="table">
             <thead>
                 <tr>
                     <th>Unit</th>
                     <th>Quantity</th>
                     <th>Cost</th>
-                    <th>Hire More</th>
+                    <th>Strength</th>
+                    <th>Hire Apprentices</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Workers</td>
-                    <td>${player.workers}</td>
-                    <td>20 Food</td>
-                    <td><input type="number" id="workers" name="workers" value="0" required min="0" max="9999" size="10"/></td>
-                </tr>
-                <tr>
-                    <td>Farmers</td>
-                    <td>${player.farmers}</td>
-                    <td>20 Food</td>
-                    <td><input type="number" id="farmers" name="farmers" value="0" required min="0" max="9999" size="10"/></td>
-                </tr>
-                <tr>
-                    <td>Spies</td>
-                    <td>${player.spies}</td>
-                    <td>20 Food</td>
-                    <td><input type="number" id="spies" name="spies" value="0" required min="0" max="9999" size="10"/></td>
+                    <td>Apprentice Warriors</td>
+                    <td>${player.soldiers.apprenticeWarriors}</td>
+                    <td>${player.soldiers.apprenticeWarCost} Food</td>
+                    <td>${player.soldiers.apprenticeWarStr}</td>
+                    <td><input type="number" id="apprenticeWarriors" name="apprenticeWarriors" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td><input type="submit" value="Buy Villagers" ></td>
+                    <td></td>
+                    <td><input type="submit" value="HIRE Apprentices" ></td>
                 </tr>
             </tbody>
         </table>
@@ -65,47 +55,89 @@
 
 
     </br>
-    <div><b>Sell Villagers</b></div>
+    <h1>Train Apprentices</h1>
     <hr>
     </br>
 
-    <form:form method="post" action="sellVillagers">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Unit</th>
-                        <th>Quantity</th>
-                        <th>Cost</th>
-                        <th>Hire More</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Workers</td>
-                        <td>${player.workers}</td>
-                        <td>20 Food</td>
-                        <td><input type="number" id="workersSell" name="workers" value="0" required min="0" max="9999" size="10"/></td>
-                    </tr>
-                    <tr>
-                        <td>Farmers</td>
-                        <td>${player.farmers}</td>
-                        <td>20 Food</td>
-                        <td><input type="number" id="farmersSell" name="farmers" value="0" required min="0" max="9999" size="10"/></td>
-                    </tr>
-                    <tr>
-                        <td>Spies</td>
-                        <td>${player.spies}</td>
-                        <td>20 Food</td>
-                        <td><input type="number" id="spiesSell" name="spies" value="0" required min="0" max="9999" size="10"/></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><input type="submit" value="Sell Villagers" ></td>
-                    </tr>
-                </tbody>
-            </table>
+    <form:form method="post" action="trainApprentice">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Attackers</th>
+                    <th>Quantity</th>
+                    <th>Cost</th>
+                    <th>Strength</th>
+                    <th>Hire More</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Swordsmen</td>
+                    <td>${player.soldiers.attackerLvl1}</td>
+                    <td>${player.soldiers.attDefLvl1Cost} Food</td>
+                    <td>${player.soldiers.attDefLvl1Str}</td>
+                    <td><input type="number" name="attackerLvl1" value="0" required min="0" max="9999" size="10"/></td>
+                </tr>
+                <tr>
+                    <td>Great swordsmen</td>
+                    <td>${player.soldiers.attackerLvl2}</td>
+                    <td>${player.soldiers.attDefLvl2Cost} Food</td>
+                    <td>${player.soldiers.attDefLvl2Str}</td>
+                    <td><input type="number" name="attackerLvl2" value="0" required min="0" max="9999" size="10"/></td>
+                </tr>
+                <tr>
+                    <td>Master Swordsmen</td>
+                    <td>${player.soldiers.attackerLvl3}</td>
+                    <td>${player.soldiers.attDefLvl3Cost} Food</td>
+                    <td>${player.soldiers.attDefLvl3Str}</td>
+                    <td><input type="number" name="attackerLvl3" value="0" required min="0" max="9999" size="10"/></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Defenders</th>
+                            <th>Quantity</th>
+                            <th>Cost</th>
+                            <th>Strength</th>
+                            <th>Hire More</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Bowmen</td>
+                            <td>${player.soldiers.defenderLvl1}</td>
+                            <td>${player.soldiers.attDefLvl1Cost} Food</td>
+                            <td>${player.soldiers.attDefLvl1Str}</td>
+                            <td><input type="number" name="defenderLvl1" value="0" required min="0" max="9999" size="10"/></td>
+                        </tr>
+
+                        <tr>
+                            <td>Great Bowmen</td>
+                            <td>${player.soldiers.defenderLvl2}</td>
+                            <td>${player.soldiers.attDefLvl2Cost} Food</td>
+                            <td>${player.soldiers.attDefLvl2Str}</td>
+                            <td><input type="number" name="defenderLvl2" value="0" required min="0" max="9999" size="10"/></td>
+                        </tr>
+
+                        <tr>
+                            <td>Master Bowmen</td>
+                            <td>${player.soldiers.defenderLvl3}</td>
+                            <td>${player.soldiers.attDefLvl3Cost} Food</td>
+                            <td>${player.soldiers.attDefLvl3Str}</td>
+                            <td><input type="number" name="defenderLvl3" value="0" required min="0" max="9999" size="10"/></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><input type="submit" value="TRAIN Apprentices" ></td>
+                        </tr>
+                    </tbody>
+                </table>
         </form:form>
 
 </div>

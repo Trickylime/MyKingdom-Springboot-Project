@@ -1,11 +1,14 @@
 package com.trickylime.springboot.mykingdom.game.player;
 
+import com.trickylime.springboot.mykingdom.game.player.soliders.Soliders;
+import com.trickylime.springboot.mykingdom.game.player.weapons.Weapons;
+
 public class Player {
 
     private int id;
     private String username;
     private String email;
-    private long food = 100;
+    private long food = 1000;
     private long gold = 1_000;
     private int battleTurns = 10;
     private int attack = 10;
@@ -14,11 +17,15 @@ public class Player {
     private long workers = 10;
     private long farmers = 10;
     private long spies = 10;
+    private final Soliders soliders;
+    private final Weapons weapons;
 
     public Player(int id, String username, String email) {
         this.id = id;
         this.username = username;
         this.email = email;
+        this.soliders = new Soliders();
+        this.weapons = new Weapons();
     }
 
     public String getUsername() {
@@ -100,6 +107,18 @@ public class Player {
     public void setSpies(long spies) {
         this.spies += spies;
     }
+
+    public Soliders getSoldiers() {
+        return soliders;
+    }
+
+    public Weapons getWeapons() {
+        return weapons;
+    }
+
+
+
+
 
     @Override
     public String toString() {

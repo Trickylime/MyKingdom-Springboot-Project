@@ -30,7 +30,7 @@
                     <th>Unit</th>
                     <th>Quantity</th>
                     <th>Cost</th>
-                    <th>Hire More</th>
+                    <th>Hire Villagers</th>
                 </tr>
             </thead>
             <tbody>
@@ -76,7 +76,7 @@
                         <th>Unit</th>
                         <th>Quantity</th>
                         <th>Cost</th>
-                        <th>Hire More</th>
+                        <th>Sell Villagers</th>
                     </tr>
                 </thead>
                 <tbody>
