@@ -113,4 +113,70 @@ public class PlayerService {
 
         return false;
     }
+
+    public boolean buyWeapons(Player player, int attackWepLvl0, int defendWepLvl0, int attackWepLvl1, int defendWepLvl1,
+                              int attackWepLvl2, int defendWepLvl2, int attackWepLvl3, int defendWepLvl3) {
+
+        long level0Cost = (attackWepLvl0 + defendWepLvl0) * player.getWeapons().getWepLvl0Cost();
+        long level1Cost = (attackWepLvl1 + defendWepLvl1) * player.getWeapons().getWepLvl1Cost();
+        long level2Cost = (attackWepLvl2 + defendWepLvl2) * player.getWeapons().getWepLvl2Cost();
+        long level3Cost = (attackWepLvl3 + defendWepLvl3) * player.getWeapons().getWepLvl3Cost();
+
+        long totalSpend = level0Cost + level1Cost + level2Cost + level3Cost;
+
+        if (player.getGold() >= totalSpend) {
+            player.getWeapons().setAttackWepLvl0(attackWepLvl0);
+            player.getWeapons().setAttackWepLvl1(attackWepLvl1);
+            player.getWeapons().setAttackWepLvl2(attackWepLvl2);
+            player.getWeapons().setAttackWepLvl3(attackWepLvl3);
+
+            player.getWeapons().setDefendWepLvl0(defendWepLvl0);
+            player.getWeapons().setDefendWepLvl1(defendWepLvl1);
+            player.getWeapons().setDefendWepLvl2(defendWepLvl2);
+            player.getWeapons().setDefendWepLvl3(defendWepLvl3);
+
+            player.setGold(-totalSpend);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean sellWeapons(Player player, int attackWepLvl0, int defendWepLvl0, int attackWepLvl1, int defendWepLvl1,
+                              int attackWepLvl2, int defendWepLvl2, int attackWepLvl3, int defendWepLvl3) {
+
+        long level0RefundCost = (attackWepLvl0 + defendWepLvl0) * player.getWeapons().getWepLvl0RefundCost();
+        long level1RefundCost = (attackWepLvl1 + defendWepLvl1) * player.getWeapons().getWepLvl1RefundCost();
+        long level2RefundCost = (attackWepLvl2 + defendWepLvl2) * player.getWeapons().getWepLvl2RefundCost();
+        long level3RefundCost = (attackWepLvl3 + defendWepLvl3) * player.getWeapons().getWepLvl3RefundCost();
+
+        long totalRefund = level0RefundCost + level1RefundCost + level2RefundCost + level3RefundCost;
+
+        if (player.getWeapons().getAttackWepLvl0() >= attackWepLvl0
+                && player.getWeapons().getDefendWepLvl0() >= defendWepLvl0
+                && player.getWeapons().getAttackWepLvl1() >= attackWepLvl1
+                && player.getWeapons().getDefendWepLvl1() >= defendWepLvl1
+                && player.getWeapons().getAttackWepLvl1() >= attackWepLvl2
+                && player.getWeapons().getDefendWepLvl1() >= defendWepLvl2
+                && player.getWeapons().getAttackWepLvl1() >= attackWepLvl3
+                && player.getWeapons().getDefendWepLvl1() >= defendWepLvl3) {
+
+            player.getWeapons().setAttackWepLvl0(-attackWepLvl0);
+            player.getWeapons().setAttackWepLvl1(-attackWepLvl1);
+            player.getWeapons().setAttackWepLvl2(-attackWepLvl2);
+            player.getWeapons().setAttackWepLvl3(-attackWepLvl3);
+
+            player.getWeapons().setDefendWepLvl0(-defendWepLvl0);
+            player.getWeapons().setDefendWepLvl1(-defendWepLvl1);
+            player.getWeapons().setDefendWepLvl2(-defendWepLvl2);
+            player.getWeapons().setDefendWepLvl3(-defendWepLvl3);
+
+            player.setGold(totalRefund);
+
+            return true;
+        }
+
+        return false;
+    }
 }

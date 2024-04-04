@@ -1,3 +1,9 @@
+<style>
+    .fixed-width {
+        width: 175px; /* Adjust the width as per your preference */
+    }
+</style>
+
 <%@ include file="common/header.jspf" %>
 <%@ include file="common/navigation.jspf" %>
 <%@ include file="common/player-resource-bar.jspf" %>
@@ -26,11 +32,11 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Unit</th>
-                    <th>Quantity</th>
-                    <th>Cost</th>
-                    <th>Strength</th>
-                    <th>Hire Apprentices</th>
+                    <th class="fixed-width">Unit</th>
+                    <th class="fixed-width">Quantity</th>
+                    <th class="fixed-width">Cost</th>
+                    <th class="fixed-width">Strength</th>
+                    <th class="fixed-width">Hire Apprentices</th>
                 </tr>
             </thead>
             <tbody>
@@ -63,11 +69,11 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Attackers</th>
-                    <th>Quantity</th>
-                    <th>Cost</th>
-                    <th>Strength</th>
-                    <th>Hire More</th>
+                    <th class="fixed-width">Attackers</th>
+                    <th class="fixed-width">Quantity</th>
+                    <th class="fixed-width">Cost</th>
+                    <th class="fixed-width">Strength</th>
+                    <th class="fixed-width">Hire More</th>
                 </tr>
             </thead>
             <tbody>
@@ -96,49 +102,49 @@
         </table>
 
         <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Defenders</th>
-                            <th>Quantity</th>
-                            <th>Cost</th>
-                            <th>Strength</th>
-                            <th>Hire More</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Bowmen</td>
-                            <td>${player.soldiers.defenderLvl1}</td>
-                            <td>${player.soldiers.attDefLvl1Cost} Food</td>
-                            <td>${player.soldiers.attDefLvl1Str}</td>
-                            <td><input type="number" name="defenderLvl1" value="0" required min="0" max="9999" size="10"/></td>
-                        </tr>
+            <thead>
+                <tr>
+                    <th class="fixed-width">Defenders</th>
+                    <th class="fixed-width">Quantity</th>
+                    <th class="fixed-width">Cost</th>
+                    <th class="fixed-width">Strength</th>
+                    <th class="fixed-width">Hire More</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Bowmen</td>
+                    <td>${player.soldiers.defenderLvl1}</td>
+                    <td>${player.soldiers.attDefLvl1Cost} Food</td>
+                    <td>${player.soldiers.attDefLvl1Str}</td>
+                    <td><input type="number" name="defenderLvl1" value="0" required min="0" max="9999" size="10"/></td>
+                </tr>
 
-                        <tr>
-                            <td>Great Bowmen</td>
-                            <td>${player.soldiers.defenderLvl2}</td>
-                            <td>${player.soldiers.attDefLvl2Cost} Food</td>
-                            <td>${player.soldiers.attDefLvl2Str}</td>
-                            <td><input type="number" name="defenderLvl2" value="0" required min="0" max="9999" size="10"/></td>
-                        </tr>
+                <tr>
+                    <td>Great Bowmen</td>
+                    <td>${player.soldiers.defenderLvl2}</td>
+                    <td>${player.soldiers.attDefLvl2Cost} Food</td>
+                    <td>${player.soldiers.attDefLvl2Str}</td>
+                    <td><input type="number" name="defenderLvl2" value="0" required min="0" max="9999" size="10"/></td>
+                </tr>
 
-                        <tr>
-                            <td>Master Bowmen</td>
-                            <td>${player.soldiers.defenderLvl3}</td>
-                            <td>${player.soldiers.attDefLvl3Cost} Food</td>
-                            <td>${player.soldiers.attDefLvl3Str}</td>
-                            <td><input type="number" name="defenderLvl3" value="0" required min="0" max="9999" size="10"/></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td><input type="submit" value="TRAIN Apprentices" ></td>
-                        </tr>
-                    </tbody>
-                </table>
-        </form:form>
+                <tr>
+                    <td>Master Bowmen</td>
+                    <td>${player.soldiers.defenderLvl3}</td>
+                    <td>${player.soldiers.attDefLvl3Cost} Food</td>
+                    <td>${player.soldiers.attDefLvl3Str}</td>
+                    <td><input type="number" name="defenderLvl3" value="0" required min="0" max="9999" size="10"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><input type="submit" value="TRAIN Apprentices" ></td>
+                </tr>
+            </tbody>
+        </table>
+    </form:form>
 
 </div>
 

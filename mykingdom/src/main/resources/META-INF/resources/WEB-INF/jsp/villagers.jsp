@@ -1,3 +1,9 @@
+<style>
+    .fixed-width {
+        width: 175px; /* Adjust the width as per your preference */
+    }
+</style>
+
 <%@ include file="common/header.jspf" %>
 <%@ include file="common/navigation.jspf" %>
 <%@ include file="common/player-resource-bar.jspf" %>
@@ -27,10 +33,10 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Unit</th>
-                    <th>Quantity</th>
-                    <th>Cost</th>
-                    <th>Hire Villagers</th>
+                    <th class="fixed-width">Unit</th>
+                    <th class="fixed-width">Quantity</th>
+                    <th class="fixed-width">Cost</th>
+                    <th class="fixed-width">Hire Villagers</th>
                 </tr>
             </thead>
             <tbody>
@@ -73,10 +79,10 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Unit</th>
-                        <th>Quantity</th>
-                        <th>Cost</th>
-                        <th>Sell Villagers</th>
+                        <th class="fixed-width">Unit</th>
+                        <th class="fixed-width">Quantity</th>
+                        <th class="fixed-width">Cost</th>
+                        <th class="fixed-width">Sell Villagers</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -17,6 +17,11 @@ public class Weapons {
     private final long wepLvl2Cost = 10_00;
     private final long wepLvl3Cost = 100_000;
 
+    private final long wepLvl0RefundCost = wepLvl0Cost / 2;
+    private final long wepLvl1RefundCost = wepLvl1Cost / 2;
+    private final long wepLvl2RefundCost = wepLvl2Cost / 2;
+    private final long wepLvl3RefundCost = wepLvl3Cost / 2;
+
     private final long wepLvl0Str = 10;
     private final long wepLvl1Str = 1000;
     private final long wepLvl2Str = 100_000;
@@ -30,7 +35,7 @@ public class Weapons {
     }
 
     public void setAttackWepLvl0(long attackWepLvl0) {
-        this.attackWepLvl0 = attackWepLvl0;
+        this.attackWepLvl0 += attackWepLvl0;
     }
 
     public long getAttackWepLvl1() {
@@ -38,7 +43,7 @@ public class Weapons {
     }
 
     public void setAttackWepLvl1(long attackWepLvl1) {
-        this.attackWepLvl1 = attackWepLvl1;
+        this.attackWepLvl1 += attackWepLvl1;
     }
 
     public long getAttackWepLvl2() {
@@ -46,7 +51,7 @@ public class Weapons {
     }
 
     public void setAttackWepLvl2(long attackWepLvl2) {
-        this.attackWepLvl2 = attackWepLvl2;
+        this.attackWepLvl2 += attackWepLvl2;
     }
 
     public long getAttackWepLvl3() {
@@ -54,7 +59,7 @@ public class Weapons {
     }
 
     public void setAttackWepLvl3(long attackWepLvl3) {
-        this.attackWepLvl3 = attackWepLvl3;
+        this.attackWepLvl3 += attackWepLvl3;
     }
 
     public long getDefendWepLvl0() {
@@ -62,7 +67,7 @@ public class Weapons {
     }
 
     public void setDefendWepLvl0(long defendWepLvl0) {
-        this.defendWepLvl0 = defendWepLvl0;
+        this.defendWepLvl0 += defendWepLvl0;
     }
 
     public long getDefendWepLvl1() {
@@ -70,7 +75,7 @@ public class Weapons {
     }
 
     public void setDefendWepLvl1(long defendWepLvl1) {
-        this.defendWepLvl1 = defendWepLvl1;
+        this.defendWepLvl1 += defendWepLvl1;
     }
 
     public long getDefendWepLvl2() {
@@ -78,7 +83,7 @@ public class Weapons {
     }
 
     public void setDefendWepLvl2(long defendWepLvl2) {
-        this.defendWepLvl2 = defendWepLvl2;
+        this.defendWepLvl2 += defendWepLvl2;
     }
 
     public long getDefendWepLvl3() {
@@ -86,7 +91,7 @@ public class Weapons {
     }
 
     public void setDefendWepLvl3(long defendWepLvl3) {
-        this.defendWepLvl3 = defendWepLvl3;
+        this.defendWepLvl3 += defendWepLvl3;
     }
 
     public long getWepLvl0Cost() {
@@ -119,5 +124,21 @@ public class Weapons {
 
     public long getWepLvl3Str() {
         return wepLvl3Str;
+    }
+
+    public long getWepLvl0RefundCost() {
+        return wepLvl0RefundCost;
+    }
+
+    public long getWepLvl1RefundCost() {
+        return wepLvl1RefundCost;
+    }
+
+    public long getWepLvl2RefundCost() {
+        return wepLvl2RefundCost;
+    }
+
+    public long getWepLvl3RefundCost() {
+        return wepLvl3RefundCost;
     }
 }

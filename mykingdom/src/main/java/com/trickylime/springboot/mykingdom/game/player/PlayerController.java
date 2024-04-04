@@ -115,7 +115,54 @@ public class PlayerController {
         }
     }
 
+    @RequestMapping(value = "weapons", method = RequestMethod.GET)
+    public String weaponsPage(ModelMap model) {
 
+        Player player = getLoggedInUser();
+        model.put("player", player);
+
+        return "weapons";
+    }
+
+    @RequestMapping(value = "buyWeapons", method = RequestMethod.POST)
+    public String buyWeapons(@RequestParam int attackWepLvl0, @RequestParam int defendWepLvl0,
+                             @RequestParam int attackWepLvl1, @RequestParam int defendWepLvl1,
+                             @RequestParam int attackWepLvl2, @RequestParam int defendWepLvl2,
+                             @RequestParam int attackWepLvl3, @RequestParam int defendWepLvl3, ModelMap model) {
+
+        Player player = getLoggedInUser();
+        model.put("player", player);
+
+        if(playerService.buyWeapons(player, attackWepLvl0, defendWepLvl0, attackWepLvl1, defendWepLvl1,
+                attackWepLvl2, defendWepLvl2, attackWepLvl3, defendWepLvl3)) {
+            return "redirect:weapons";
+        } else {
+            model.put("errorMessage", "Insufficient gold. Please try again.");
+            model.put("player", player);
+
+            return "weapons";
+        }
+    }
+
+    @RequestMapping(value = "sellWeapons", method = RequestMethod.POST)
+    public String sellWeapons(@RequestParam int attackWepLvl0, @RequestParam int defendWepLvl0,
+                             @RequestParam int attackWepLvl1, @RequestParam int defendWepLvl1,
+                             @RequestParam int attackWepLvl2, @RequestParam int defendWepLvl2,
+                             @RequestParam int attackWepLvl3, @RequestParam int defendWepLvl3, ModelMap model) {
+
+        Player player = getLoggedInUser();
+        model.put("player", player);
+
+        if(playerService.sellWeapons(player, attackWepLvl0, defendWepLvl0, attackWepLvl1, defendWepLvl1,
+                attackWepLvl2, defendWepLvl2, attackWepLvl3, defendWepLvl3)) {
+            return "redirect:weapons";
+        } else {
+            model.put("errorMessage", "Insufficient weapons. Please try again.");
+            model.put("player", player);
+
+            return "weapons";
+        }
+    }
 
     private Player getLoggedInUser() {
         Authentication authentication =
