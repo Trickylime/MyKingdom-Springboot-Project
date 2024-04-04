@@ -1,6 +1,7 @@
 package com.trickylime.springboot.mykingdom.game.player;
 
 import com.trickylime.springboot.mykingdom.game.player.soliders.Soliders;
+import com.trickylime.springboot.mykingdom.game.player.upgrades.Upgrades;
 import com.trickylime.springboot.mykingdom.game.player.weapons.Weapons;
 
 public class Player {
@@ -19,6 +20,7 @@ public class Player {
     private long spies = 10;
     private final Soliders soliders;
     private final Weapons weapons;
+    private final Upgrades upgrades;
 
     public Player(int id, String username, String email) {
         this.id = id;
@@ -26,6 +28,7 @@ public class Player {
         this.email = email;
         this.soliders = new Soliders();
         this.weapons = new Weapons();
+        this.upgrades = new Upgrades();
     }
 
     public String getUsername() {
@@ -116,9 +119,9 @@ public class Player {
         return weapons;
     }
 
-
-
-
+    public Upgrades getUpgrades() {
+        return upgrades;
+    }
 
     @Override
     public String toString() {

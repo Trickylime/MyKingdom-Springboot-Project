@@ -164,6 +164,32 @@ public class PlayerController {
         }
     }
 
+    @RequestMapping(value = "upgrades", method = RequestMethod.GET)
+    public String upgradesPage(ModelMap model) {
+
+        Player player = getLoggedInUser();
+        model.put("player", player);
+
+        return "upgrades";
+    }
+
+    @RequestMapping(value = "upgrades", method = RequestMethod.POST)
+    public String buyUpgrade(@RequestParam String upgradeValue, ModelMap model) {
+
+        Player player = getLoggedInUser();
+        model.put("player", player);
+
+        System.out.println(upgradeValue);
+        if (playerService.buyUpgrade(player, upgradeValue)) {
+            return "redirect:upgrades";
+        } else {
+            model.put("errorMessage", "Insufficient Gold. Please try again.");
+            model.put("player", player);
+
+            return "upgrades";
+        }
+    }
+
     private Player getLoggedInUser() {
         Authentication authentication =
                 SecurityContextHolder.getContext().getAuthentication();
