@@ -97,15 +97,12 @@ public class PlayerController {
     }
 
     @RequestMapping(value = "trainApprentice", method = RequestMethod.POST)
-    public String trainApprentice(@RequestParam int attackerLvl1, @RequestParam int defenderLvl1,
-                                  @RequestParam int attackerLvl2, @RequestParam int defenderLvl2,
-                                  @RequestParam int attackerLvl3, @RequestParam int defenderLvl3, ModelMap model) {
+    public String trainApprentice(@RequestParam long[] attackers, @RequestParam long[] defenders, ModelMap model) {
 
         Player player = getLoggedInUser();
         model.put("player", player);
 
-        if(playerService.trainApprentice(player, attackerLvl1, defenderLvl1, attackerLvl2, defenderLvl2,
-                attackerLvl3, defenderLvl3)) {
+        if(playerService.trainApprentice(player, attackers, defenders)) {
             return "redirect:soldiers";
         } else {
             model.put("errorMessage", "Insufficient food. Please try again.");

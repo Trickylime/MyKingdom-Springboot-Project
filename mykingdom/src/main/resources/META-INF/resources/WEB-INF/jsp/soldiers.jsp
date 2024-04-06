@@ -43,8 +43,8 @@
                 <tr>
                     <td>Apprentice Warriors</td>
                     <td>${player.soldiers.apprenticeWarriors}</td>
-                    <td>${player.soldiers.apprenticeWarCost} Food</td>
-                    <td>${player.soldiers.apprenticeWarStr}</td>
+                    <td>${player.soldiers.apprenticeWarriorsCost} Food</td>
+                    <td>${player.soldiers.apprenticeWarriorsStrength}</td>
                     <td><input type="number" id="apprenticeWarriors" name="apprenticeWarriors" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
                 <tr>
@@ -79,24 +79,24 @@
             <tbody>
                 <tr>
                     <td>${player.soldiers.getAttackerNames(0)}</td>
-                    <td>${player.soldiers.attackerLvl1}</td>
-                    <td>${player.soldiers.attDefLvl1Cost} Food</td>
-                    <td>${player.soldiers.attDefLvl1Str}</td>
-                    <td><input type="number" name="attackerLvl1" value="0" required min="0" max="9999" size="10"/></td>
+                    <td>${player.soldiers.getAttackers(0)}</td>
+                    <td>${player.soldiers.getSoldiersCost(0)} Food</td>
+                    <td>${player.soldiers.getSoldiersStrength(0)}</td>
+                    <td><input type="number" name="attackers" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
                 <tr>
                     <td>${player.soldiers.getAttackerNames(1)}</td>
-                    <td>${player.soldiers.attackerLvl2}</td>
-                    <td>${player.soldiers.attDefLvl2Cost} Food</td>
-                    <td>${player.soldiers.attDefLvl2Str}</td>
-                    <td><input type="number" name="attackerLvl2" value="0" required min="0" max="9999" size="10"/></td>
+                    <td>${player.soldiers.getAttackers(1)}</td>
+                    <td>${player.soldiers.getSoldiersCost(1)} Food</td>
+                    <td>${player.soldiers.getSoldiersStrength(1)}</td>
+                    <td><input type="number" name="attackers" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
                 <tr>
                     <td>${player.soldiers.getAttackerNames(2)}</td>
-                    <td>${player.soldiers.attackerLvl3}</td>
-                    <td>${player.soldiers.attDefLvl3Cost} Food</td>
-                    <td>${player.soldiers.attDefLvl3Str}</td>
-                    <td><input type="number" name="attackerLvl3" value="0" required min="0" max="9999" size="10"/></td>
+                    <td>${player.soldiers.getAttackers(2)}</td>
+                    <td>${player.soldiers.getSoldiersCost(2)} Food</td>
+                    <td>${player.soldiers.getSoldiersStrength(2)}</td>
+                    <td><input type="number" name="attackers" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
             </tbody>
         </table>
@@ -114,26 +114,26 @@
             <tbody>
                 <tr>
                     <td>${player.soldiers.getDefenderNames(0)}</td>
-                    <td>${player.soldiers.defenderLvl1}</td>
-                    <td>${player.soldiers.attDefLvl1Cost} Food</td>
-                    <td>${player.soldiers.attDefLvl1Str}</td>
-                    <td><input type="number" name="defenderLvl1" value="0" required min="0" max="9999" size="10"/></td>
+                    <td>${player.soldiers.getDefenders(0)}</td>
+                    <td>${player.soldiers.getSoldiersCost(0)} Food</td>
+                    <td>${player.soldiers.getSoldiersStrength(0)}</td>
+                    <td><input type="number" name="defenders" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
 
                 <tr>
                     <td>${player.soldiers.getDefenderNames(1)}</td>
-                    <td>${player.soldiers.defenderLvl2}</td>
-                    <td>${player.soldiers.attDefLvl2Cost} Food</td>
-                    <td>${player.soldiers.attDefLvl2Str}</td>
-                    <td><input type="number" name="defenderLvl2" value="0" required min="0" max="9999" size="10"/></td>
+                    <td>${player.soldiers.getDefenders(1)}</td>
+                    <td>${player.soldiers.getSoldiersCost(1)} Food</td>
+                    <td>${player.soldiers.getSoldiersStrength(1)}</td>
+                    <td><input type="number" name="defenders" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
 
                 <tr>
                     <td>${player.soldiers.getDefenderNames(2)}</td>
-                    <td>${player.soldiers.defenderLvl3}</td>
-                    <td>${player.soldiers.attDefLvl3Cost} Food</td>
-                    <td>${player.soldiers.attDefLvl3Str}</td>
-                    <td><input type="number" name="defenderLvl3" value="0" required min="0" max="9999" size="10"/></td>
+                    <td>${player.soldiers.getDefenders(2)}</td>
+                    <td>${player.soldiers.getSoldiersCost(2)} Food</td>
+                    <td>${player.soldiers.getSoldiersStrength(2)}</td>
+                    <td><input type="number" name="defenders" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
                 <tr>
                     <td></td>
