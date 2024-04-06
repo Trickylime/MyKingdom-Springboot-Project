@@ -44,32 +44,32 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Wooden Sword</td>
-                    <td>${player.weapons.attackWepLvl0}</td>
-                    <td>${player.weapons.wepLvl0Cost} Gold</td>
-                    <td>${player.weapons.wepLvl0Str}</td>
-                    <td><input type="number" name="attackWepLvl0" value="0" required min="0" max="9999" size="10"/></td>
+                    <td>${player.weapons.getAttackWeaponNames(0)}</td>
+                    <td>${player.weapons.getAttackWeapons(0)}</td>
+                    <td>${player.weapons.getWeaponCost(0)} Gold</td>
+                    <td>${player.weapons.getWeaponStrength(0)}</td>
+                    <td><input type="number" name="attackWeapons" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
                 <tr>
-                    <td>Steel Sword</td>
-                    <td>${player.weapons.attackWepLvl1}</td>
-                    <td>${player.weapons.wepLvl1Cost} Gold</td>
-                    <td>${player.weapons.wepLvl1Str}</td>
-                    <td><input type="number" name="attackWepLvl1" value="0" required min="0" max="9999" size="10"/></td>
+                    <td>${player.weapons.getAttackWeaponNames(1)}</td>
+                    <td>${player.weapons.getAttackWeapons(1)}</td>
+                    <td>${player.weapons.getWeaponCost(1)} Gold</td>
+                    <td>${player.weapons.getWeaponStrength(1)}</td>
+                    <td><input type="number" name="attackWeapons" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
                 <tr>
-                    <td>EarthShaking Great Sword</td>
-                    <td>${player.weapons.attackWepLvl2}</td>
-                    <td>${player.weapons.wepLvl2Cost} Gold</td>
-                    <td>${player.weapons.wepLvl2Str}</td>
-                    <td><input type="number" name="attackWepLvl2" value="0" required min="0" max="9999" size="10"/></td>
+                    <td>${player.weapons.getAttackWeaponNames(2)}</td>
+                    <td>${player.weapons.getAttackWeapons(2)}</td>
+                    <td>${player.weapons.getWeaponCost(2)} Gold</td>
+                    <td>${player.weapons.getWeaponStrength(2)}</td>
+                    <td><input type="number" name="attackWeapons" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
                 <tr>
-                    <td>Planet Splitting God Sword</td>
-                    <td>${player.weapons.attackWepLvl3}</td>
-                    <td>${player.weapons.wepLvl3Cost} Gold</td>
-                    <td>${player.weapons.wepLvl3Str}</td>
-                    <td><input type="number" name="attackWepLvl3" value="0" required min="0" max="9999" size="10"/></td>
+                    <td>${player.weapons.getAttackWeaponNames(3)}</td>
+                    <td>${player.weapons.getAttackWeapons(3)}</td>
+                    <td>${player.weapons.getWeaponCost(3)} Gold</td>
+                    <td>${player.weapons.getWeaponStrength(3)}</td>
+                    <td><input type="number" name="attackWeapons" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
             </tbody>
         </table>
@@ -86,35 +86,35 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>SlingShot</td>
-                    <td>${player.weapons.defendWepLvl0}</td>
-                    <td>${player.weapons.wepLvl0Cost} Gold</td>
-                    <td>${player.weapons.wepLvl0Str}</td>
-                    <td><input type="number" name="defendWepLvl0" value="0" required min="0" max="9999" size="10"/></td>
+                    <td>${player.weapons.getDefenseWeaponNames(0)}</td>
+                    <td>${player.weapons.getDefenseWeapons(0)}</td>
+                    <td>${player.weapons.getWeaponCost(0)} Gold</td>
+                    <td>${player.weapons.getWeaponStrength(0)}</td>
+                    <td><input type="number" name="defenseWeapons" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
 
                 <tr>
-                    <td>Longbow</td>
-                    <td>${player.weapons.defendWepLvl1}</td>
-                    <td>${player.weapons.wepLvl1Cost} Gold</td>
-                    <td>${player.weapons.wepLvl1Str}</td>
-                    <td><input type="number" name="defendWepLvl1" value="0" required min="0" max="9999" size="10"/></td>
+                    <td>${player.weapons.getDefenseWeaponNames(1)}</td>
+                    <td>${player.weapons.getDefenseWeapons(1)}</td>
+                    <td>${player.weapons.getWeaponCost(1)} Gold</td>
+                    <td>${player.weapons.getWeaponStrength(1)}</td>
+                    <td><input type="number" name="defenseWeapons" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
 
                 <tr>
-                    <td>SkullSplitter Compound Bow</td>
-                    <td>${player.weapons.defendWepLvl2}</td>
-                    <td>${player.weapons.wepLvl2Cost} Gold</td>
-                    <td>${player.weapons.wepLvl2Str}</td>
-                    <td><input type="number" name="defendWepLvl2" value="0" required min="0" max="9999" size="10"/></td>
+                    <td>${player.weapons.getDefenseWeaponNames(2)}</td>
+                    <td>${player.weapons.getDefenseWeapons(2)}</td>
+                    <td>${player.weapons.getWeaponCost(2)} Gold</td>
+                    <td>${player.weapons.getWeaponStrength(2)}</td>
+                    <td><input type="number" name="defenseWeapons" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
 
                 <tr>
-                    <td>Crystal God Bow</td>
-                    <td>${player.weapons.defendWepLvl3}</td>
-                    <td>${player.weapons.wepLvl3Cost} Gold</td>
-                    <td>${player.weapons.wepLvl3Str}</td>
-                    <td><input type="number" name="defendWepLvl3" value="0" required min="0" max="9999" size="10"/></td>
+                    <td>${player.weapons.getDefenseWeaponNames(3)}</td>
+                    <td>${player.weapons.getDefenseWeapons(3)}</td>
+                    <td>${player.weapons.getWeaponCost(3)} Gold</td>
+                    <td>${player.weapons.getWeaponStrength(3)}</td>
+                    <td><input type="number" name="defenseWeapons" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
 
                 <tr>
@@ -146,32 +146,32 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Wooden Sword</td>
-                    <td>${player.weapons.attackWepLvl0}</td>
-                    <td>${player.weapons.wepLvl0RefundCost} Gold</td>
-                    <td>${player.weapons.wepLvl0Str}</td>
-                    <td><input type="number" name="attackWepLvl0" value="0" required min="0" max="9999" size="10"/></td>
+                    <td>${player.weapons.getAttackWeaponNames(0)}</td>
+                    <td>${player.weapons.getAttackWeapons(0)}</td>
+                    <td>${player.weapons.getWeaponRefundCost(0)} Gold</td>
+                    <td>${player.weapons.getWeaponStrength(0)}</td>
+                    <td><input type="number" name="attackWeapons" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
                 <tr>
-                    <td>Steel Sword</td>
-                    <td>${player.weapons.attackWepLvl1}</td>
-                    <td>${player.weapons.wepLvl1RefundCost} Gold</td>
-                    <td>${player.weapons.wepLvl1Str}</td>
-                    <td><input type="number" name="attackWepLvl1" value="0" required min="0" max="9999" size="10"/></td>
+                    <td>${player.weapons.getAttackWeaponNames(1)}</td>
+                    <td>${player.weapons.getAttackWeapons(1)}</td>
+                    <td>${player.weapons.getWeaponRefundCost(1)} Gold</td>
+                    <td>${player.weapons.getWeaponStrength(1)}</td>
+                    <td><input type="number" name="attackWeapons" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
                 <tr>
-                    <td>EarthShaking Great Sword</td>
-                    <td>${player.weapons.attackWepLvl2}</td>
-                    <td>${player.weapons.wepLvl2RefundCost} Gold</td>
-                    <td>${player.weapons.wepLvl2Str}</td>
-                    <td><input type="number" name="attackWepLvl2" value="0" required min="0" max="9999" size="10"/></td>
+                    <td>${player.weapons.getAttackWeaponNames(2)}</td>
+                    <td>${player.weapons.getAttackWeapons(2)}</td>
+                    <td>${player.weapons.getWeaponRefundCost(2)} Gold</td>
+                    <td>${player.weapons.getWeaponStrength(2)}</td>
+                    <td><input type="number" name="attackWeapons" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
                 <tr>
-                    <td>Planet Splitting God Sword</td>
-                    <td>${player.weapons.attackWepLvl3}</td>
-                    <td>${player.weapons.wepLvl3RefundCost} Gold</td>
-                    <td>${player.weapons.wepLvl3Str}</td>
-                    <td><input type="number" name="attackWepLvl3" value="0" required min="0" max="9999" size="10"/></td>
+                    <td>${player.weapons.getAttackWeaponNames(3)}</td>
+                    <td>${player.weapons.getAttackWeapons(3)}</td>
+                    <td>${player.weapons.getWeaponRefundCost(3)} Gold</td>
+                    <td>${player.weapons.getWeaponStrength(3)}</td>
+                    <td><input type="number" name="attackWeapons" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
             </tbody>
         </table>
@@ -188,35 +188,35 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>SlingShot</td>
-                    <td>${player.weapons.defendWepLvl0}</td>
-                    <td>${player.weapons.wepLvl0RefundCost} Gold</td>
-                    <td>${player.weapons.wepLvl0Str}</td>
-                    <td><input type="number" name="defendWepLvl0" value="0" required min="0" max="9999" size="10"/></td>
+                    <td>${player.weapons.getDefenseWeaponNames(0)}</td>
+                    <td>${player.weapons.getDefenseWeapons(0)}</td>
+                    <td>${player.weapons.getWeaponRefundCost(0)} Gold</td>
+                    <td>${player.weapons.getWeaponStrength(0)}</td>
+                    <td><input type="number" name="defenseWeapons" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
 
                 <tr>
-                    <td>Longbow</td>
-                    <td>${player.weapons.defendWepLvl1}</td>
-                    <td>${player.weapons.wepLvl1RefundCost} Gold</td>
-                    <td>${player.weapons.wepLvl1Str}</td>
-                    <td><input type="number" name="defendWepLvl1" value="0" required min="0" max="9999" size="10"/></td>
+                    <td>${player.weapons.getDefenseWeaponNames(1)}</td>
+                    <td>${player.weapons.getDefenseWeapons(1)}</td>
+                    <td>${player.weapons.getWeaponRefundCost(1)} Gold</td>
+                    <td>${player.weapons.getWeaponStrength(1)}</td>
+                    <td><input type="number" name="defenseWeapons" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
 
                 <tr>
-                    <td>SkullSplitter Compound Bow</td>
-                    <td>${player.weapons.defendWepLvl2}</td>
-                    <td>${player.weapons.wepLvl2RefundCost} Gold</td>
-                    <td>${player.weapons.wepLvl2Str}</td>
-                    <td><input type="number" name="defendWepLvl2" value="0" required min="0" max="9999" size="10"/></td>
+                    <td>${player.weapons.getDefenseWeaponNames(2)}</td>
+                    <td>${player.weapons.getDefenseWeapons(2)}</td>
+                    <td>${player.weapons.getWeaponRefundCost(2)} Gold</td>
+                    <td>${player.weapons.getWeaponStrength(2)}</td>
+                    <td><input type="number" name="defenseWeapons" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
 
                 <tr>
-                    <td>Crystal God Bow</td>
-                    <td>${player.weapons.defendWepLvl3}</td>
-                    <td>${player.weapons.wepLvl3RefundCost} Gold</td>
-                    <td>${player.weapons.wepLvl3Str}</td>
-                    <td><input type="number" name="defendWepLvl3" value="0" required min="0" max="9999" size="10"/></td>
+                    <td>${player.weapons.getDefenseWeaponNames(3)}</td>
+                    <td>${player.weapons.getDefenseWeapons(3)}</td>
+                    <td>${player.weapons.getWeaponRefundCost(3)} Gold</td>
+                    <td>${player.weapons.getWeaponStrength(3)}</td>
+                    <td><input type="number" name="defenseWeapons" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
 
                 <tr>

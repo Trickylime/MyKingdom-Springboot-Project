@@ -2,6 +2,8 @@ package com.trickylime.springboot.mykingdom.game.player.soliders;
 
 public class Soliders {
 
+    private String[] attackerNames = {"Swordsmen", "Great Swordsmen", "Master Swordsmen"};
+    private String[] defenderNames = {"Bowmen", "Great Bowmen", "Master Bowmen"};
     private long apprenticeWarriors = 0;
     private long attackerLvl1 = 1;
     private long attackerLvl2 = 0;
@@ -81,63 +83,39 @@ public class Soliders {
         return attDefLvl1Cost;
     }
 
-    public void setAttDefLvl1Cost(long attDefLvl1Cost) {
-        this.attDefLvl1Cost = attDefLvl1Cost;
-    }
-
     public long getAttDefLvl2Cost() {
         return attDefLvl2Cost;
-    }
-
-    public void setAttDefLvl2Cost(long attDefLvl2Cost) {
-        this.attDefLvl2Cost = attDefLvl2Cost;
     }
 
     public long getAttDefLvl3Cost() {
         return attDefLvl3Cost;
     }
 
-    public void setAttDefLvl3Cost(long attDefLvl3Cost) {
-        this.attDefLvl3Cost = attDefLvl3Cost;
-    }
-
     public long getAttDefLvl1Str() {
         return attDefLvl1Str;
-    }
-
-    public void setAttDefLvl1Str(long attDefLvl1Str) {
-        this.attDefLvl1Str += attDefLvl1Str;
     }
 
     public long getAttDefLvl2Str() {
         return attDefLvl2Str;
     }
 
-    public void setAttDefLvl2Str(long attDefLvl2Str) {
-        this.attDefLvl2Str += attDefLvl2Str;
-    }
-
     public long getAttDefLvl3Str() {
         return attDefLvl3Str;
-    }
-
-    public void setAttDefLvl3Str(long attDefLvl3Str) {
-        this.attDefLvl3Str += attDefLvl3Str;
     }
 
     public long getApprenticeWarCost() {
         return apprenticeWarCost;
     }
 
-    public void setApprenticeWarCost(long apprenticeWarCost) {
-        this.apprenticeWarCost = apprenticeWarCost;
-    }
-
     public long getApprenticeWarStr() {
         return apprenticeWarStr;
     }
 
-    public void setApprenticeWarStr(long apprenticeWarStr) {
-        this.apprenticeWarStr += apprenticeWarStr;
+    public String getAttackerNames(int index) {
+        return attackerNames[index];
+    }
+
+    public String getDefenderNames(int index) {
+        return defenderNames[index];
     }
 }

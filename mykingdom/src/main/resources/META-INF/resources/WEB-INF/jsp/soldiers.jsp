@@ -78,21 +78,21 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Swordsmen</td>
+                    <td>${player.soldiers.getAttackerNames(0)}</td>
                     <td>${player.soldiers.attackerLvl1}</td>
                     <td>${player.soldiers.attDefLvl1Cost} Food</td>
                     <td>${player.soldiers.attDefLvl1Str}</td>
                     <td><input type="number" name="attackerLvl1" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
                 <tr>
-                    <td>Great swordsmen</td>
+                    <td>${player.soldiers.getAttackerNames(1)}</td>
                     <td>${player.soldiers.attackerLvl2}</td>
                     <td>${player.soldiers.attDefLvl2Cost} Food</td>
                     <td>${player.soldiers.attDefLvl2Str}</td>
                     <td><input type="number" name="attackerLvl2" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
                 <tr>
-                    <td>Master Swordsmen</td>
+                    <td>${player.soldiers.getAttackerNames(2)}</td>
                     <td>${player.soldiers.attackerLvl3}</td>
                     <td>${player.soldiers.attDefLvl3Cost} Food</td>
                     <td>${player.soldiers.attDefLvl3Str}</td>
@@ -113,7 +113,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Bowmen</td>
+                    <td>${player.soldiers.getDefenderNames(0)}</td>
                     <td>${player.soldiers.defenderLvl1}</td>
                     <td>${player.soldiers.attDefLvl1Cost} Food</td>
                     <td>${player.soldiers.attDefLvl1Str}</td>
@@ -121,7 +121,7 @@
                 </tr>
 
                 <tr>
-                    <td>Great Bowmen</td>
+                    <td>${player.soldiers.getDefenderNames(1)}</td>
                     <td>${player.soldiers.defenderLvl2}</td>
                     <td>${player.soldiers.attDefLvl2Cost} Food</td>
                     <td>${player.soldiers.attDefLvl2Str}</td>
@@ -129,7 +129,7 @@
                 </tr>
 
                 <tr>
-                    <td>Master Bowmen</td>
+                    <td>${player.soldiers.getDefenderNames(2)}</td>
                     <td>${player.soldiers.defenderLvl3}</td>
                     <td>${player.soldiers.attDefLvl3Cost} Food</td>
                     <td>${player.soldiers.attDefLvl3Str}</td>
