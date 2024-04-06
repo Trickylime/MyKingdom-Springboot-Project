@@ -153,11 +153,10 @@ public class PlayerService {
 
     public boolean buyUpgrade(Player player, String upgradeValue) {
 
-        long upgradeCost = 0;
 
         switch(upgradeValue) {
             case "attack" -> {
-                upgradeCost = player.getUpgrades().getAttackUpgradeCost();
+                long upgradeCost = player.getUpgrades().getAttackUpgradeCost();
                 if (player.getGold() >= upgradeCost) {
                     player.getUpgrades().upgradeAttack();
                     player.setGold(-upgradeCost);
@@ -165,7 +164,7 @@ public class PlayerService {
                 }
             }
             case "defense" -> {
-                upgradeCost = player.getUpgrades().getDefenseUpgradeCost();
+                long upgradeCost = player.getUpgrades().getDefenseUpgradeCost();
                 if (player.getGold() >= upgradeCost) {
                     player.getUpgrades().upgradeDefense();
                     player.setGold(-upgradeCost);
@@ -173,7 +172,7 @@ public class PlayerService {
                 }
             }
             case "spy" -> {
-                upgradeCost = player.getUpgrades().getSpyUpgradeCost();
+                long upgradeCost = player.getUpgrades().getSpyUpgradeCost();
                 if (player.getGold() >= upgradeCost) {
                     player.getUpgrades().upgradeSpy();
                     player.setGold(-upgradeCost);
@@ -181,7 +180,7 @@ public class PlayerService {
                 }
             }
             case "farm" -> {
-                upgradeCost = player.getUpgrades().getFarmUpgradeCost();
+                long upgradeCost = player.getUpgrades().getFarmUpgradeCost();
                 if (player.getGold() >= upgradeCost) {
                     player.getUpgrades().upgradeFarming();
                     player.setGold(-upgradeCost);
@@ -190,5 +189,9 @@ public class PlayerService {
             }
         }
         return false;
+    }
+
+    public boolean buyScience(Player player, String upgradeValue) {
+        return true;
     }
 }

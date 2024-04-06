@@ -43,7 +43,7 @@
                 <td>
                     <form:form method="post" action="research">
                         <input type="submit" value="Research">
-                        <input type="hidden" name="researchValue" value="atklvl0">
+                        <input type="hidden" name="researchValue" value="atkLvl0">
                     </form:form>
                 </td>
             </tr>
@@ -54,7 +54,7 @@
                 <td>
                     <form:form method="post" action="research">
                         <input type="submit" value="Research">
-                        <input type="hidden" name="researchValue" value="atklvl1">
+                        <input type="hidden" name="researchValue" value="atkLvl1">
                     </form:form>
                 </td>
             </tr>
@@ -65,7 +65,7 @@
                 <td>
                     <form:form method="post" action="research">
                         <input type="submit" value="Research">
-                        <input type="hidden" name="researchValue" value="atklvl2">
+                        <input type="hidden" name="researchValue" value="atkLvl2">
                     </form:form>
                 </td>
             </tr>
@@ -89,7 +89,7 @@
                 <td>
                     <form:form method="post" action="research">
                         <input type="submit" value="Research">
-                        <input type="hidden" name="researchValue" value="atklvl0">
+                        <input type="hidden" name="researchValue" value="defLvl0">
                     </form:form>
                 </td>
             </tr>
@@ -100,7 +100,7 @@
                 <td>
                     <form:form method="post" action="research">
                         <input type="submit" value="Research">
-                        <input type="hidden" name="researchValue" value="atklvl1">
+                        <input type="hidden" name="researchValue" value="defLvl1">
                     </form:form>
                 </td>
             </tr>
@@ -111,7 +111,7 @@
                 <td>
                     <form:form method="post" action="research">
                         <input type="submit" value="Research">
-                        <input type="hidden" name="researchValue" value="atklvl2">
+                        <input type="hidden" name="researchValue" value="defLvl2">
                     </form:form>
                 </td>
             </tr>
@@ -135,7 +135,7 @@
                 <td>
                     <form:form method="post" action="research">
                         <input type="submit" value="Research">
-                        <input type="hidden" name="researchValue" value="atklvl0">
+                        <input type="hidden" name="researchValue" value="weaponLvl0">
                     </form:form>
                 </td>
             </tr>
@@ -146,7 +146,7 @@
                 <td>
                     <form:form method="post" action="research">
                         <input type="submit" value="Research">
-                        <input type="hidden" name="researchValue" value="atklvl1">
+                        <input type="hidden" name="researchValue" value="weaponLvl1">
                     </form:form>
                 </td>
             </tr>
@@ -157,7 +157,75 @@
                 <td>
                     <form:form method="post" action="research">
                         <input type="submit" value="Research">
-                        <input type="hidden" name="researchValue" value="atklvl2">
+                        <input type="hidden" name="researchValue" value="weaponLvl2">
+                    </form:form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="fixed-width">Ward Research</th>
+                <th class="fixed-width">Required</th>
+                <th class="fixed-width">Research Cost</th>
+                <th class="fixed-width">Research</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Ward1</td>
+                <td>-</td>
+                <td>${player.science.getWardsCost(0)} Gold</td>
+                <td>
+                    <form:form method="post" action="research">
+                        <input type="submit" value="Research">
+                        <input type="hidden" name="researchValue" value="wardLvl0">
+                    </form:form>
+                </td>
+            </tr>
+            <tr>
+                <td>Ward2</td>
+                <td>Ward1</td>
+                <td>${player.science.getWardsCost(1)} Gold</td>
+                <td>
+                    <form:form method="post" action="research">
+                        <input type="submit" value="Research">
+                        <input type="hidden" name="researchValue" value="wardLvl1">
+                    </form:form>
+                </td>
+            </tr>
+            <tr>
+                <td>Ward3</td>
+                <td>Ward2</td>
+                <td>${player.science.getWardsCost(2)} Gold</td>
+                <td>
+                    <form:form method="post" action="research">
+                        <input type="submit" value="Research">
+                        <input type="hidden" name="researchValue" value="wardLvl2">
+                    </form:form>
+                </td>
+            </tr>
+            <tr>
+                <td>Ward4</td>
+                <td>Ward3</td>
+                <td>${player.science.getWardsCost(3)} Gold</td>
+                <td>
+                    <form:form method="post" action="research">
+                        <input type="submit" value="Research">
+                        <input type="hidden" name="researchValue" value="wardLvl3">
+                    </form:form>
+                </td>
+            </tr>
+            <tr>
+                <td>Ward5</td>
+                <td>Ward4</td>
+                <td>${player.science.getWardsCost(4)} Gold</td>
+                <td>
+                    <form:form method="post" action="research">
+                        <input type="submit" value="Research">
+                        <input type="hidden" name="researchValue" value="wardLvl4">
                     </form:form>
                 </td>
             </tr>

@@ -12,7 +12,8 @@
     <h1>Soldiers</h1>
 
     <div>
-        Spend your food to hire new Soldiers for your kingdom. </br>
+        Spend your food to hire new Apprentice Warriors, which then can be trained as either </br>
+        attackers or defenders for your kingdom. </br>
         > Attackers increase your attack power.</br>
         > Defenders increase your defense power.</br>
     </div>
