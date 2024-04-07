@@ -191,7 +191,41 @@ public class PlayerService {
         return false;
     }
 
-    public boolean buyScience(Player player, String upgradeValue) {
-        return true;
+    public boolean buyScience(Player player, String researchValue) {
+
+        int levelIndex = Integer.parseInt(String.valueOf(researchValue.charAt(researchValue.length() - 1)));
+        researchValue = researchValue.substring(0, 3);
+
+        switch (researchValue) {
+            case "atk" -> {
+                if(player.getGold() >= player.getScience().getSoldiersCost(levelIndex)) {
+                    player.getScience().setAttackersUnlocked(levelIndex);
+                    player.setGold(-player.getScience().getSoldiersCost(levelIndex));
+                    return true;
+                }
+            }
+            case "def" -> {
+                if (player.getGold() >= player.getScience().getSoldiersCost(levelIndex)) {
+                    player.getScience().setDefendersUnlocked(levelIndex);
+                    player.setGold(-player.getScience().getSoldiersCost(levelIndex));
+                    return true;
+                }
+            }
+            case "wea" -> {
+                if (player.getGold() >= player.getScience().getWeaponsCost(levelIndex - 1)) {
+                    player.getScience().setWeaponsUnlocked(levelIndex);
+                    player.setGold(-player.getScience().getWeaponsCost(levelIndex - 1));
+                    return true;
+                }
+            }
+            case "war" -> {
+                if (player.getGold() >= player.getScience().getWardsCost(levelIndex)) {
+                    player.getScience().setWardsUnlocked(levelIndex);
+                    player.setGold(-player.getScience().getWardsCost(levelIndex));
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

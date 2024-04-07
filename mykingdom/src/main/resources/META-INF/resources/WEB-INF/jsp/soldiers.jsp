@@ -86,18 +86,22 @@
                     <td><input type="number" name="attackers" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
                 <tr>
-                    <td>${player.soldiers.getAttackerNames(1)}</td>
-                    <td>${player.soldiers.getAttackers(1)}</td>
-                    <td>${player.soldiers.getSoldiersCost(1)} Food</td>
-                    <td>${player.soldiers.getSoldiersStrength(1)}</td>
-                    <td><input type="number" name="attackers" value="0" required min="0" max="9999" size="10"/></td>
+                    <c:if test="${player.science.getAttackersUnlocked(1)}">
+                        <td>${player.soldiers.getAttackerNames(1)}</td>
+                        <td>${player.soldiers.getAttackers(1)}</td>
+                        <td>${player.soldiers.getSoldiersCost(1)} Food</td>
+                        <td>${player.soldiers.getSoldiersStrength(1)}</td>
+                        <td><input type="number" name="attackers" value="0" required min="0" max="9999" size="10"/></td>
+                    </c:if>
                 </tr>
                 <tr>
-                    <td>${player.soldiers.getAttackerNames(2)}</td>
-                    <td>${player.soldiers.getAttackers(2)}</td>
-                    <td>${player.soldiers.getSoldiersCost(2)} Food</td>
-                    <td>${player.soldiers.getSoldiersStrength(2)}</td>
-                    <td><input type="number" name="attackers" value="0" required min="0" max="9999" size="10"/></td>
+                    <c:if test="${player.science.getAttackersUnlocked(2)}">
+                        <td>${player.soldiers.getAttackerNames(2)}</td>
+                        <td>${player.soldiers.getAttackers(2)}</td>
+                        <td>${player.soldiers.getSoldiersCost(2)} Food</td>
+                        <td>${player.soldiers.getSoldiersStrength(2)}</td>
+                        <td><input type="number" name="attackers" value="0" required min="0" max="9999" size="10"/></td>
+                    </c:if>
                 </tr>
             </tbody>
         </table>
@@ -122,19 +126,23 @@
                 </tr>
 
                 <tr>
-                    <td>${player.soldiers.getDefenderNames(1)}</td>
-                    <td>${player.soldiers.getDefenders(1)}</td>
-                    <td>${player.soldiers.getSoldiersCost(1)} Food</td>
-                    <td>${player.soldiers.getSoldiersStrength(1)}</td>
-                    <td><input type="number" name="defenders" value="0" required min="0" max="9999" size="10"/></td>
+                    <c:if test="${player.science.getDefendersUnlocked(1)}">
+                        <td>${player.soldiers.getDefenderNames(1)}</td>
+                        <td>${player.soldiers.getDefenders(1)}</td>
+                        <td>${player.soldiers.getSoldiersCost(1)} Food</td>
+                        <td>${player.soldiers.getSoldiersStrength(1)}</td>
+                        <td><input type="number" name="defenders" value="0" required min="0" max="9999" size="10"/></td>
+                    </c:if>
                 </tr>
 
                 <tr>
-                    <td>${player.soldiers.getDefenderNames(2)}</td>
-                    <td>${player.soldiers.getDefenders(2)}</td>
-                    <td>${player.soldiers.getSoldiersCost(2)} Food</td>
-                    <td>${player.soldiers.getSoldiersStrength(2)}</td>
-                    <td><input type="number" name="defenders" value="0" required min="0" max="9999" size="10"/></td>
+                    <c:if test="${player.science.getDefendersUnlocked(2)}">
+                        <td>${player.soldiers.getDefenderNames(2)}</td>
+                        <td>${player.soldiers.getDefenders(2)}</td>
+                        <td>${player.soldiers.getSoldiersCost(2)} Food</td>
+                        <td>${player.soldiers.getSoldiersStrength(2)}</td>
+                        <td><input type="number" name="defenders" value="0" required min="0" max="9999" size="10"/></td>
+                    </c:if>
                 </tr>
                 <tr>
                     <td></td>

@@ -187,13 +187,13 @@ public class PlayerController {
         return "science";
     }
 
-    @RequestMapping(value = "science", method = RequestMethod.POST)
-    public String buyScience(@RequestParam String upgradeValue, ModelMap model) {
+    @RequestMapping(value = "research", method = RequestMethod.POST)
+    public String buyScience(@RequestParam String researchValue, ModelMap model) {
 
         Player player = getLoggedInUser();
         model.put("player", player);
 
-        if (playerService.buyScience(player, upgradeValue)) {
+        if (playerService.buyScience(player, researchValue)) {
             return "redirect:science";
         } else {
             model.put("errorMessage", "Insufficient Gold. Please try again.");

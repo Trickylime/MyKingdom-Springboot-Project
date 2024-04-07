@@ -11,7 +11,7 @@ public class Player {
     private String username;
     private String email;
     private long food = 1000;
-    private long gold = 100_000;
+    private long gold = 100_000_000_000L;
     private int battleTurns = 10;
     private int attack = 10;
     private int defense = 10;

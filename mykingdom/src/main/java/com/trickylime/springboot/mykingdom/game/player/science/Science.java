@@ -2,10 +2,12 @@ package com.trickylime.springboot.mykingdom.game.player.science;
 
 public class Science {
 
-    private boolean[] soldiersUnlocked = new boolean[2];
+    private boolean[] attackersUnlocked = {true, false, false};
+    private boolean[] defendersUnlocked = {true, false, false};
+
     private int[] soldiersCost = {1_000, 100_000, 10_000_000};
 
-    private boolean[] weaponsUnlocked = new boolean[3];
+    private boolean[] weaponsUnlocked = {true, false, false, false};
     private int[] weaponsCost = {30_000, 3_000_000, 300_000_000};
 
     private boolean[] wardsUnlocked = new boolean[5];
@@ -14,27 +16,35 @@ public class Science {
     public Science() {
     }
 
-    public boolean[] getSoldiersUnlocked() {
-        return soldiersUnlocked;
+    public boolean getAttackersUnlocked(int level) {
+        return attackersUnlocked[level];
     }
 
-    public void setSoldiersUnlocked(int i) {
-        this.soldiersUnlocked[i] = true;
+    public void setAttackersUnlocked(int i) {
+        this.attackersUnlocked[i] = true;
     }
 
-    public boolean[] getWeaponsUnlocked() {
-        return weaponsUnlocked;
+    public boolean getDefendersUnlocked(int level) {
+        return defendersUnlocked[level];
+    }
+
+    public void setDefendersUnlocked(int i) {
+        this.defendersUnlocked[i] = true;
+    }
+
+    public boolean getWeaponsUnlocked(int level) {
+        return weaponsUnlocked[level];
     }
 
     public void setWeaponsUnlocked(int i) {
         this.weaponsUnlocked[i] = true;
     }
 
-    public boolean[] getWards() {
-        return wardsUnlocked;
+    public boolean getWardsUnlocked(int level) {
+        return wardsUnlocked[level];
     }
 
-    public void setWards(int i) {
+    public void setWardsUnlocked(int i) {
         this.wardsUnlocked[i] = true;
     }
 

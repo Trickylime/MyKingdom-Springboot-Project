@@ -44,32 +44,40 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>${player.weapons.getAttackWeaponNames(0)}</td>
-                    <td>${player.weapons.getAttackWeapons(0)}</td>
-                    <td>${player.weapons.getWeaponCost(0)} Gold</td>
-                    <td>${player.weapons.getWeaponStrength(0)}</td>
-                    <td><input type="number" name="attackWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    <c:if test="${player.science.getWeaponsUnlocked(0)}">
+                        <td>${player.weapons.getAttackWeaponNames(0)}</td>
+                        <td>${player.weapons.getAttackWeapons(0)}</td>
+                        <td>${player.weapons.getWeaponCost(0)} Gold</td>
+                        <td>${player.weapons.getWeaponStrength(0)}</td>
+                        <td><input type="number" name="attackWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    </c:if>
                 </tr>
                 <tr>
-                    <td>${player.weapons.getAttackWeaponNames(1)}</td>
-                    <td>${player.weapons.getAttackWeapons(1)}</td>
-                    <td>${player.weapons.getWeaponCost(1)} Gold</td>
-                    <td>${player.weapons.getWeaponStrength(1)}</td>
-                    <td><input type="number" name="attackWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    <c:if test="${player.science.getWeaponsUnlocked(1)}">
+                        <td>${player.weapons.getAttackWeaponNames(1)}</td>
+                        <td>${player.weapons.getAttackWeapons(1)}</td>
+                        <td>${player.weapons.getWeaponCost(1)} Gold</td>
+                        <td>${player.weapons.getWeaponStrength(1)}</td>
+                        <td><input type="number" name="attackWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    </c:if>
                 </tr>
                 <tr>
-                    <td>${player.weapons.getAttackWeaponNames(2)}</td>
-                    <td>${player.weapons.getAttackWeapons(2)}</td>
-                    <td>${player.weapons.getWeaponCost(2)} Gold</td>
-                    <td>${player.weapons.getWeaponStrength(2)}</td>
-                    <td><input type="number" name="attackWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    <c:if test="${player.science.getWeaponsUnlocked(2)}">
+                        <td>${player.weapons.getAttackWeaponNames(2)}</td>
+                        <td>${player.weapons.getAttackWeapons(2)}</td>
+                        <td>${player.weapons.getWeaponCost(2)} Gold</td>
+                        <td>${player.weapons.getWeaponStrength(2)}</td>
+                        <td><input type="number" name="attackWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    </c:if>
                 </tr>
                 <tr>
-                    <td>${player.weapons.getAttackWeaponNames(3)}</td>
-                    <td>${player.weapons.getAttackWeapons(3)}</td>
-                    <td>${player.weapons.getWeaponCost(3)} Gold</td>
-                    <td>${player.weapons.getWeaponStrength(3)}</td>
-                    <td><input type="number" name="attackWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    <c:if test="${player.science.getWeaponsUnlocked(3)}">
+                        <td>${player.weapons.getAttackWeaponNames(3)}</td>
+                        <td>${player.weapons.getAttackWeapons(3)}</td>
+                        <td>${player.weapons.getWeaponCost(3)} Gold</td>
+                        <td>${player.weapons.getWeaponStrength(3)}</td>
+                        <td><input type="number" name="attackWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    </c:if>
                 </tr>
             </tbody>
         </table>
@@ -86,35 +94,43 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>${player.weapons.getDefenseWeaponNames(0)}</td>
-                    <td>${player.weapons.getDefenseWeapons(0)}</td>
-                    <td>${player.weapons.getWeaponCost(0)} Gold</td>
-                    <td>${player.weapons.getWeaponStrength(0)}</td>
-                    <td><input type="number" name="defenseWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    <c:if test="${player.science.getWeaponsUnlocked(0)}">
+                        <td>${player.weapons.getDefenseWeaponNames(0)}</td>
+                        <td>${player.weapons.getDefenseWeapons(0)}</td>
+                        <td>${player.weapons.getWeaponCost(0)} Gold</td>
+                        <td>${player.weapons.getWeaponStrength(0)}</td>
+                        <td><input type="number" name="defenseWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    </c:if>
                 </tr>
 
                 <tr>
-                    <td>${player.weapons.getDefenseWeaponNames(1)}</td>
-                    <td>${player.weapons.getDefenseWeapons(1)}</td>
-                    <td>${player.weapons.getWeaponCost(1)} Gold</td>
-                    <td>${player.weapons.getWeaponStrength(1)}</td>
-                    <td><input type="number" name="defenseWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    <c:if test="${player.science.getWeaponsUnlocked(1)}">
+                        <td>${player.weapons.getDefenseWeaponNames(1)}</td>
+                        <td>${player.weapons.getDefenseWeapons(1)}</td>
+                        <td>${player.weapons.getWeaponCost(1)} Gold</td>
+                        <td>${player.weapons.getWeaponStrength(1)}</td>
+                        <td><input type="number" name="defenseWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    </c:if>
                 </tr>
 
                 <tr>
-                    <td>${player.weapons.getDefenseWeaponNames(2)}</td>
-                    <td>${player.weapons.getDefenseWeapons(2)}</td>
-                    <td>${player.weapons.getWeaponCost(2)} Gold</td>
-                    <td>${player.weapons.getWeaponStrength(2)}</td>
-                    <td><input type="number" name="defenseWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    <c:if test="${player.science.getWeaponsUnlocked(2)}">
+                        <td>${player.weapons.getDefenseWeaponNames(2)}</td>
+                        <td>${player.weapons.getDefenseWeapons(2)}</td>
+                        <td>${player.weapons.getWeaponCost(2)} Gold</td>
+                        <td>${player.weapons.getWeaponStrength(2)}</td>
+                        <td><input type="number" name="defenseWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    </c:if>
                 </tr>
 
                 <tr>
-                    <td>${player.weapons.getDefenseWeaponNames(3)}</td>
-                    <td>${player.weapons.getDefenseWeapons(3)}</td>
-                    <td>${player.weapons.getWeaponCost(3)} Gold</td>
-                    <td>${player.weapons.getWeaponStrength(3)}</td>
-                    <td><input type="number" name="defenseWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    <c:if test="${player.science.getWeaponsUnlocked(3)}">
+                        <td>${player.weapons.getDefenseWeaponNames(3)}</td>
+                        <td>${player.weapons.getDefenseWeapons(3)}</td>
+                        <td>${player.weapons.getWeaponCost(3)} Gold</td>
+                        <td>${player.weapons.getWeaponStrength(3)}</td>
+                        <td><input type="number" name="defenseWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    </c:if>
                 </tr>
 
                 <tr>
@@ -146,32 +162,40 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>${player.weapons.getAttackWeaponNames(0)}</td>
-                    <td>${player.weapons.getAttackWeapons(0)}</td>
-                    <td>${player.weapons.getWeaponRefundCost(0)} Gold</td>
-                    <td>${player.weapons.getWeaponStrength(0)}</td>
-                    <td><input type="number" name="attackWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    <c:if test="${player.science.getWeaponsUnlocked(0)}">
+                        <td>${player.weapons.getAttackWeaponNames(0)}</td>
+                        <td>${player.weapons.getAttackWeapons(0)}</td>
+                        <td>${player.weapons.getWeaponRefundCost(0)} Gold</td>
+                        <td>${player.weapons.getWeaponStrength(0)}</td>
+                        <td><input type="number" name="attackWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    </c:if>
                 </tr>
                 <tr>
-                    <td>${player.weapons.getAttackWeaponNames(1)}</td>
-                    <td>${player.weapons.getAttackWeapons(1)}</td>
-                    <td>${player.weapons.getWeaponRefundCost(1)} Gold</td>
-                    <td>${player.weapons.getWeaponStrength(1)}</td>
-                    <td><input type="number" name="attackWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    <c:if test="${player.science.getWeaponsUnlocked(1)}">
+                        <td>${player.weapons.getAttackWeaponNames(1)}</td>
+                        <td>${player.weapons.getAttackWeapons(1)}</td>
+                        <td>${player.weapons.getWeaponRefundCost(1)} Gold</td>
+                        <td>${player.weapons.getWeaponStrength(1)}</td>
+                        <td><input type="number" name="attackWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    </c:if>
                 </tr>
                 <tr>
-                    <td>${player.weapons.getAttackWeaponNames(2)}</td>
-                    <td>${player.weapons.getAttackWeapons(2)}</td>
-                    <td>${player.weapons.getWeaponRefundCost(2)} Gold</td>
-                    <td>${player.weapons.getWeaponStrength(2)}</td>
-                    <td><input type="number" name="attackWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    <c:if test="${player.science.getWeaponsUnlocked(2)}">
+                        <td>${player.weapons.getAttackWeaponNames(2)}</td>
+                        <td>${player.weapons.getAttackWeapons(2)}</td>
+                        <td>${player.weapons.getWeaponRefundCost(2)} Gold</td>
+                        <td>${player.weapons.getWeaponStrength(2)}</td>
+                        <td><input type="number" name="attackWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    </c:if>
                 </tr>
                 <tr>
-                    <td>${player.weapons.getAttackWeaponNames(3)}</td>
-                    <td>${player.weapons.getAttackWeapons(3)}</td>
-                    <td>${player.weapons.getWeaponRefundCost(3)} Gold</td>
-                    <td>${player.weapons.getWeaponStrength(3)}</td>
-                    <td><input type="number" name="attackWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    <c:if test="${player.science.getWeaponsUnlocked(3)}">
+                        <td>${player.weapons.getAttackWeaponNames(3)}</td>
+                        <td>${player.weapons.getAttackWeapons(3)}</td>
+                        <td>${player.weapons.getWeaponRefundCost(3)} Gold</td>
+                        <td>${player.weapons.getWeaponStrength(3)}</td>
+                        <td><input type="number" name="attackWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    </c:if>
                 </tr>
             </tbody>
         </table>
@@ -188,35 +212,43 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>${player.weapons.getDefenseWeaponNames(0)}</td>
-                    <td>${player.weapons.getDefenseWeapons(0)}</td>
-                    <td>${player.weapons.getWeaponRefundCost(0)} Gold</td>
-                    <td>${player.weapons.getWeaponStrength(0)}</td>
-                    <td><input type="number" name="defenseWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    <c:if test="${player.science.getWeaponsUnlocked(0)}">
+                        <td>${player.weapons.getDefenseWeaponNames(0)}</td>
+                        <td>${player.weapons.getDefenseWeapons(0)}</td>
+                        <td>${player.weapons.getWeaponRefundCost(0)} Gold</td>
+                        <td>${player.weapons.getWeaponStrength(0)}</td>
+                        <td><input type="number" name="defenseWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    </c:if>
                 </tr>
 
                 <tr>
-                    <td>${player.weapons.getDefenseWeaponNames(1)}</td>
-                    <td>${player.weapons.getDefenseWeapons(1)}</td>
-                    <td>${player.weapons.getWeaponRefundCost(1)} Gold</td>
-                    <td>${player.weapons.getWeaponStrength(1)}</td>
-                    <td><input type="number" name="defenseWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    <c:if test="${player.science.getWeaponsUnlocked(1)}">
+                        <td>${player.weapons.getDefenseWeaponNames(1)}</td>
+                        <td>${player.weapons.getDefenseWeapons(1)}</td>
+                        <td>${player.weapons.getWeaponRefundCost(1)} Gold</td>
+                        <td>${player.weapons.getWeaponStrength(1)}</td>
+                        <td><input type="number" name="defenseWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    </c:if>
                 </tr>
 
                 <tr>
-                    <td>${player.weapons.getDefenseWeaponNames(2)}</td>
-                    <td>${player.weapons.getDefenseWeapons(2)}</td>
-                    <td>${player.weapons.getWeaponRefundCost(2)} Gold</td>
-                    <td>${player.weapons.getWeaponStrength(2)}</td>
-                    <td><input type="number" name="defenseWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    <c:if test="${player.science.getWeaponsUnlocked(2)}">
+                        <td>${player.weapons.getDefenseWeaponNames(2)}</td>
+                        <td>${player.weapons.getDefenseWeapons(2)}</td>
+                        <td>${player.weapons.getWeaponRefundCost(2)} Gold</td>
+                        <td>${player.weapons.getWeaponStrength(2)}</td>
+                        <td><input type="number" name="defenseWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    </c:if>
                 </tr>
 
                 <tr>
-                    <td>${player.weapons.getDefenseWeaponNames(3)}</td>
-                    <td>${player.weapons.getDefenseWeapons(3)}</td>
-                    <td>${player.weapons.getWeaponRefundCost(3)} Gold</td>
-                    <td>${player.weapons.getWeaponStrength(3)}</td>
-                    <td><input type="number" name="defenseWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    <c:if test="${player.science.getWeaponsUnlocked(3)}">
+                        <td>${player.weapons.getDefenseWeaponNames(3)}</td>
+                        <td>${player.weapons.getDefenseWeapons(3)}</td>
+                        <td>${player.weapons.getWeaponRefundCost(3)} Gold</td>
+                        <td>${player.weapons.getWeaponStrength(3)}</td>
+                        <td><input type="number" name="defenseWeapons" value="0" required min="0" max="9999" size="10"/></td>
+                    </c:if>
                 </tr>
 
                 <tr>
