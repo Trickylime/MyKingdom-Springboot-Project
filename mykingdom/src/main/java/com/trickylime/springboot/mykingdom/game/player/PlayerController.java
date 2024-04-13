@@ -203,6 +203,21 @@ public class PlayerController {
         }
     }
 
+    @RequestMapping(value = "battle", method = RequestMethod.GET)
+    public String battlePlayers(ModelMap model) {
+
+        Player player = getLoggedInUser();
+        model.put("player", player);
+
+        List<Player> playerList = playerService.getPlayers();
+        model.put("playerList", playerList);
+        System.out.println(playerList);
+
+        return "battle";
+
+
+    }
+
     private Player getLoggedInUser() {
         Authentication authentication =
                 SecurityContextHolder.getContext().getAuthentication();

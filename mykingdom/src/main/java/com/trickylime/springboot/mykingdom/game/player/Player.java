@@ -1,8 +1,9 @@
 package com.trickylime.springboot.mykingdom.game.player;
 
 import com.trickylime.springboot.mykingdom.game.player.science.Science;
-import com.trickylime.springboot.mykingdom.game.player.soliders.Soliders;
+import com.trickylime.springboot.mykingdom.game.player.soldiers.Soldiers;
 import com.trickylime.springboot.mykingdom.game.player.upgrades.Upgrades;
+import com.trickylime.springboot.mykingdom.game.player.villagers.Villagers;
 import com.trickylime.springboot.mykingdom.game.player.weapons.Weapons;
 
 public class Player {
@@ -13,25 +14,44 @@ public class Player {
     private long food = 1000;
     private long gold = 100_000_000_000L;
     private int battleTurns = 10;
-    private int attack = 10;
-    private int defense = 10;
-    private int spy = 10;
-    private long workers = 10;
-    private long farmers = 10;
-    private long spies = 10;
-    private final Soliders soliders;
+    private long attack = 10;
+    private long defense = 10;
+    private long spy = 10;
+    private final Villagers villagers;
+    private final Soldiers soldiers;
     private final Weapons weapons;
     private final Upgrades upgrades;
     private final Science science;
+
+    private long[] attDefSpyFarmGoldPop = new long[6];
 
     public Player(int id, String username, String email) {
         this.id = id;
         this.username = username;
         this.email = email;
-        this.soliders = new Soliders();
+        this.villagers = new Villagers();
+        this.soldiers = new Soldiers();
         this.weapons = new Weapons();
         this.upgrades = new Upgrades();
         this.science = new Science();
+    }
+
+    public long[] getAttDefSpyFarmGoldPop() {
+
+
+        long attackTotal = getSoldiers().getSoldierAttDefTotal()[0];
+        long farmingIncome = (getVillagers().getFarmers() * 20);
+        farmingIncome += farmingIncome * getUpgrades().getMultiplyer(upgrades.getFarmLevel());
+
+        long goldIncome = (getVillagers().getWorkers() * 100) + (getVillagers().getFarmers() * 10);
+        long population = getVillagers().getTotal() + getSoldiers().getTotal("total");
+        attDefSpyFarmGoldPop[0] = getSoldiers().getSoldierAttDefTotal()[0];
+        attDefSpyFarmGoldPop[1] = getSoldiers().getSoldierAttDefTotal()[1];
+//        attDefSpyFarmGoldPop[2] =;
+//        attDefSpyFarmGoldPop[3] =;
+//        attDefSpyFarmGoldPop[4] =;
+//        attDefSpyFarmGoldPop[5] =;
+        return attDefSpyFarmGoldPop;
     }
 
     public String getUsername() {
@@ -54,17 +74,18 @@ public class Player {
         return battleTurns;
     }
 
-    public int getAttack() {
+    public long getAttack() {
+
+        long attackers = soldiers.getTotal("attack");
+        long defenders = soldiers.getTotal("defense");
+
+        this.attack = soldiers.getSoldierAttDefTotal()[0]
+                + weapons.getWeaponAttDefTotal(attackers, defenders)[0];
+        this.attack += this.attack * getUpgrades().getMultiplyer(upgrades.getAttackLevel());
+
         return attack;
     }
 
-    public int getDefense() {
-        return defense;
-    }
-
-    public int getSpy() {
-        return spy;
-    }
 
     public void setFood(long food) {
         this.food += food;
@@ -78,44 +99,12 @@ public class Player {
         this.battleTurns += battleTurns;
     }
 
-    public void setAttack(int attack) {
-        this.attack += attack;
+    public Villagers getVillagers() {
+        return villagers;
     }
 
-    public void setDefense(int defense) {
-        this.defense += defense;
-    }
-
-    public void setSpy(int spy) {
-        this.spy += spy;
-    }
-
-    public long getWorkers() {
-        return workers;
-    }
-
-    public void setWorkers(long workers) {
-        this.workers += workers;
-    }
-
-    public long getFarmers() {
-        return farmers;
-    }
-
-    public void setFarmers(long farmers) {
-        this.farmers += farmers;
-    }
-
-    public long getSpies() {
-        return spies;
-    }
-
-    public void setSpies(long spies) {
-        this.spies += spies;
-    }
-
-    public Soliders getSoldiers() {
-        return soliders;
+    public Soldiers getSoldiers() {
+        return soldiers;
     }
 
     public Weapons getWeapons() {

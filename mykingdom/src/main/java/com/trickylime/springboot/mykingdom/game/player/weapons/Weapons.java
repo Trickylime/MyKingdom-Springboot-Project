@@ -1,5 +1,7 @@
 package com.trickylime.springboot.mykingdom.game.player.weapons;
 
+import java.util.Arrays;
+
 public class Weapons {
 
     private final String[] attackWeaponNames = {"Wooden Sword", "Steel Sword", "Earth Shaking Great Sword",
@@ -16,7 +18,54 @@ public class Weapons {
 
     private final long[] weaponStrength = {10, 1000, 100_000, 1_00_000};
 
+    private long[] weaponAttDefTotal = new long[2];
+
     public Weapons() {
+    }
+
+    public long[] getWeaponAttDefTotal(long attackers, long defenders) {
+
+        if (attackers > Arrays.stream(attackWeapons).sum() && defenders > Arrays.stream(defenseWeapons).sum()) {
+            for (int i = 0; i < attackWeapons.length; i++) {
+                weaponAttDefTotal[0] += attackWeapons[i] * weaponStrength[i];
+                weaponAttDefTotal[1] += defenseWeapons[i] * weaponStrength[i];
+            }
+
+        } else {
+
+            long[] usableAttackWeapons = attackWeapons;
+            long[] usableDefenseWeapons = defenseWeapons;
+
+            long attackDiff = getTotal("attack") - attackers;
+            long defenseDiff = getTotal("defense") - defenders;
+
+            for (int i = attackWeapons.length - 1; i >= 0; i--) {
+
+                if (usableAttackWeapons[i] < attackDiff) {
+                    attackDiff -= usableAttackWeapons[i];
+                } else {
+                    usableAttackWeapons[i] = attackDiff;
+                    attackDiff = 0;
+                }
+
+                if (usableDefenseWeapons[i] < defenseDiff) {
+                    defenseDiff -= usableDefenseWeapons[i];
+                } else {
+                    usableDefenseWeapons[i] = defenseDiff;
+                    defenseDiff = 0;
+                }
+            }
+
+            for (int i = 0; i < attackWeapons.length; i++) {
+                weaponAttDefTotal[0] += usableAttackWeapons[i] * weaponStrength[i];
+                weaponAttDefTotal[1] += usableDefenseWeapons[i] * weaponStrength[i];
+            }
+
+        }
+
+        return weaponAttDefTotal;
+
+
     }
 
     public String getAttackWeaponNames(int level) {
@@ -53,5 +102,17 @@ public class Weapons {
 
     public long getWeaponStrength(int level) {
         return weaponStrength[level];
+    }
+    public long getTotal(String request) {
+
+        long attackWeaponsTotal = Arrays.stream(attackWeapons).sum();
+        long defenseWeaponsTotal = Arrays.stream(defenseWeapons).sum();
+
+        return switch (request) {
+            case "attack" -> attackWeaponsTotal;
+            case "defense" -> defenseWeaponsTotal;
+            case "total" -> attackWeaponsTotal + defenseWeaponsTotal;
+            default -> throw new IllegalStateException("Unexpected value: " + request);
+        };
     }
 }

@@ -14,6 +14,10 @@ public class Upgrades {
     public Upgrades() {
     }
 
+    public double getMultiplyer(int upgrade) {
+        return 0.03 * upgrade;
+    }
+
     public void upgradeAttack() {
         attackLevel++;
         attackUpgradeCost += attackUpgradeCost * 0.2;
