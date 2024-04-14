@@ -14,7 +14,7 @@ public class Upgrades {
     public Upgrades() {
     }
 
-    public double getMultiplyer(int upgrade) {
+    public double getMultiplier(int upgrade) {
         return 0.03 * upgrade;
     }
 

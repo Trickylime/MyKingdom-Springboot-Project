@@ -25,7 +25,7 @@ public class Weapons {
 
     public long[] getWeaponAttDefTotal(long attackers, long defenders) {
 
-        if (attackers > Arrays.stream(attackWeapons).sum() && defenders > Arrays.stream(defenseWeapons).sum()) {
+        if (attackers > getTotal("attack") && defenders > getTotal("defense")) {
             for (int i = 0; i < attackWeapons.length; i++) {
                 weaponAttDefTotal[0] += attackWeapons[i] * weaponStrength[i];
                 weaponAttDefTotal[1] += defenseWeapons[i] * weaponStrength[i];

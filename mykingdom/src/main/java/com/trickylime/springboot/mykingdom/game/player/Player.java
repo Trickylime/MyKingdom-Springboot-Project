@@ -41,7 +41,7 @@ public class Player {
 
         long attackTotal = getSoldiers().getSoldierAttDefTotal()[0];
         long farmingIncome = (getVillagers().getFarmers() * 20);
-        farmingIncome += farmingIncome * getUpgrades().getMultiplyer(upgrades.getFarmLevel());
+        farmingIncome += farmingIncome * getUpgrades().getMultiplier(upgrades.getFarmLevel());
 
         long goldIncome = (getVillagers().getWorkers() * 100) + (getVillagers().getFarmers() * 10);
         long population = getVillagers().getTotal() + getSoldiers().getTotal("total");
@@ -81,9 +81,21 @@ public class Player {
 
         this.attack = soldiers.getSoldierAttDefTotal()[0]
                 + weapons.getWeaponAttDefTotal(attackers, defenders)[0];
-        this.attack += this.attack * getUpgrades().getMultiplyer(upgrades.getAttackLevel());
+        this.attack += this.attack * getUpgrades().getMultiplier(upgrades.getAttackLevel());
 
         return attack;
+    }
+
+    public long getDefense() {
+
+        long attackers = soldiers.getTotal("attack");
+        long defenders = soldiers.getTotal("defense");
+
+        this.defense = soldiers.getSoldierAttDefTotal()[1]
+                + weapons.getWeaponAttDefTotal(attackers, defenders)[1];
+        this.defense += this.defense * getUpgrades().getMultiplier(upgrades.getDefenseLevel());
+
+        return defense;
     }
 
 
