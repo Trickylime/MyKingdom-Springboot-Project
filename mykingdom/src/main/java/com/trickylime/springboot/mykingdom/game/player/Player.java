@@ -81,6 +81,25 @@ public class Player {
         return spy;
     }
 
+    public long getFarmingIncome() {
+
+        long farmers = villagers.getFarmers();
+        long workers = villagers.getWorkers();
+
+        long farmingIncome = (long) ((farmers * 3) + (workers * 0.1));
+        farmingIncome += farmingIncome * getUpgrades().getMultiplier(upgrades.getFarmLevel());
+
+        return farmingIncome;
+    }
+
+    public long getGoldIncome() {
+
+        long workers = villagers.getWorkers();
+        long farmers = villagers.getFarmers();
+
+        return (long) ((workers * 3) + (farmers * 0.1));
+    }
+
 
     public void setFood(long food) {
         this.food += food;
