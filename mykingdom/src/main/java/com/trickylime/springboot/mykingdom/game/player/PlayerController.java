@@ -23,7 +23,6 @@ public class PlayerController {
     public String ListPlayerStats(ModelMap model) {
 
         Player player = getLoggedInUser();
-
         model.put("player", player);
 
         return "main";

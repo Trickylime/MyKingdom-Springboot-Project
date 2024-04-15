@@ -121,7 +121,7 @@ public class PlayerService {
 
         if (player.getGold() >= totalSpend) {
 
-            for(int i = 0; i <= 3; i++) {
+            for(int i = 0; i < attackWeapons.length; i++) {
                 player.getWeapons().setAttackWeapons(i, attackWeapons[i]);
                 player.getWeapons().setDefenseWeapons(i, defenseWeapons[i]);
             }

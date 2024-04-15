@@ -11,47 +11,27 @@ public class Player {
     private int id;
     private String username;
     private String email;
-    private long food = 1000;
-    private long gold = 100_000_000_000L;
-    private int battleTurns = 10;
-    private long attack = 10;
-    private long defense = 10;
-    private long spy = 10;
+    private long food = 0;
+    private long gold = 0;
+    private int battleTurns = 0;
     private final Villagers villagers;
     private final Soldiers soldiers;
     private final Weapons weapons;
     private final Upgrades upgrades;
     private final Science science;
 
-    private long[] attDefSpyFarmGoldPop = new long[6];
-
     public Player(int id, String username, String email) {
         this.id = id;
         this.username = username;
         this.email = email;
+        this.gold = 1_000;
+        this.food = 100;
+        this.battleTurns = 30;
         this.villagers = new Villagers();
         this.soldiers = new Soldiers();
         this.weapons = new Weapons();
         this.upgrades = new Upgrades();
         this.science = new Science();
-    }
-
-    public long[] getAttDefSpyFarmGoldPop() {
-
-
-        long attackTotal = getSoldiers().getSoldierAttDefTotal()[0];
-        long farmingIncome = (getVillagers().getFarmers() * 20);
-        farmingIncome += farmingIncome * getUpgrades().getMultiplier(upgrades.getFarmLevel());
-
-        long goldIncome = (getVillagers().getWorkers() * 100) + (getVillagers().getFarmers() * 10);
-        long population = getVillagers().getTotal() + getSoldiers().getTotal("total");
-        attDefSpyFarmGoldPop[0] = getSoldiers().getSoldierAttDefTotal()[0];
-        attDefSpyFarmGoldPop[1] = getSoldiers().getSoldierAttDefTotal()[1];
-//        attDefSpyFarmGoldPop[2] =;
-//        attDefSpyFarmGoldPop[3] =;
-//        attDefSpyFarmGoldPop[4] =;
-//        attDefSpyFarmGoldPop[5] =;
-        return attDefSpyFarmGoldPop;
     }
 
     public String getUsername() {
@@ -77,25 +57,28 @@ public class Player {
     public long getAttack() {
 
         long attackers = soldiers.getTotal("attack");
-        long defenders = soldiers.getTotal("defense");
 
-        this.attack = soldiers.getSoldierAttDefTotal()[0]
-                + weapons.getWeaponAttDefTotal(attackers, defenders)[0];
-        this.attack += this.attack * getUpgrades().getMultiplier(upgrades.getAttackLevel());
+        long attack = soldiers.getSoldierAttDefTotal()[0]
+                + weapons.getAttackWeaponStrength(attackers);
+        attack += attack * getUpgrades().getMultiplier(upgrades.getAttackLevel());
 
         return attack;
     }
 
     public long getDefense() {
 
-        long attackers = soldiers.getTotal("attack");
         long defenders = soldiers.getTotal("defense");
 
-        this.defense = soldiers.getSoldierAttDefTotal()[1]
-                + weapons.getWeaponAttDefTotal(attackers, defenders)[1];
-        this.defense += this.defense * getUpgrades().getMultiplier(upgrades.getDefenseLevel());
+        long defense = soldiers.getSoldierAttDefTotal()[1]
+                + weapons.getDefenseWeaponStrength(defenders);
+        defense += defense * getUpgrades().getMultiplier(upgrades.getDefenseLevel());
 
         return defense;
+    }
+
+    public long getSpy() {
+        long spy = 10;
+        return spy;
     }
 
 

@@ -157,7 +157,7 @@
                     <th class="fixed-width">Quantity</th>
                     <th class="fixed-width">Refund</th>
                     <th class="fixed-width">Strength</th>
-                    <th class="fixed-width">Hire More</th>
+                    <th class="fixed-width">Purchase More</th>
                 </tr>
             </thead>
             <tbody>
@@ -207,7 +207,7 @@
                     <th class="fixed-width">Quantity</th>
                     <th class="fixed-width">Refund</th>
                     <th class="fixed-width">Strength</th>
-                    <th class="fixed-width">Hire More</th>
+                    <th class="fixed-width">Purchase More</th>
                 </tr>
             </thead>
             <tbody>

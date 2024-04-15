@@ -5,9 +5,9 @@ import java.util.Arrays;
 public class Weapons {
 
     private final String[] attackWeaponNames = {"Wooden Sword", "Steel Sword", "Earth Shaking Great Sword",
-                                                "Planet Splitting God Sword"};
+            "Planet Splitting God Sword"};
     private final String[] defenseWeaponNames = {"Slingshot", "Longbow", "Skull Splitting Compound Bow",
-                                                "Soul Piercing Crystal God Bow"};
+            "Soul Piercing Crystal God Bow"};
     private long[] attackWeapons = {1, 0, 0, 0};
 
     private long[] defenseWeapons = {1, 0, 0, 0};
@@ -18,54 +18,47 @@ public class Weapons {
 
     private final long[] weaponStrength = {10, 1000, 100_000, 1_00_000};
 
-    private long[] weaponAttDefTotal = new long[2];
-
     public Weapons() {
     }
 
-    public long[] getWeaponAttDefTotal(long attackers, long defenders) {
+    public long getAttackWeaponStrength(long attackers) {
 
-        if (attackers > getTotal("attack") && defenders > getTotal("defense")) {
-            for (int i = 0; i < attackWeapons.length; i++) {
-                weaponAttDefTotal[0] += attackWeapons[i] * weaponStrength[i];
-                weaponAttDefTotal[1] += defenseWeapons[i] * weaponStrength[i];
-            }
+        boolean tooManyWeapons = attackers < getTotal("attack");
+        long attackWeaponTotal = getTotal("attack");
+        return calculateWeaponStrength(attackers, attackWeapons, tooManyWeapons, attackWeaponTotal);
+    }
 
-        } else {
+    public long getDefenseWeaponStrength(long defenders) {
 
-            long[] usableAttackWeapons = attackWeapons;
-            long[] usableDefenseWeapons = defenseWeapons;
+        boolean tooManyWeapons = defenders < getTotal("defense");
+        long defenseWeaponTotal = getTotal("defense");
+        return calculateWeaponStrength(defenders, defenseWeapons, tooManyWeapons, defenseWeaponTotal);
+    }
 
-            long attackDiff = getTotal("attack") - attackers;
-            long defenseDiff = getTotal("defense") - defenders;
+    public long calculateWeaponStrength(long soldiers, long[] weapons, boolean tooManyWeapons, long weaponTotal) {
 
-            for (int i = attackWeapons.length - 1; i >= 0; i--) {
+        long weaponStrengthTotal = 0;
+        long[] weaponsCopy = Arrays.copyOf(weapons, weapons.length);
 
-                if (usableAttackWeapons[i] < attackDiff) {
-                    attackDiff -= usableAttackWeapons[i];
+        if (tooManyWeapons) {
+            long weaponDiff = weaponTotal - soldiers;
+
+            for (int i = weaponsCopy.length - 1; i >= 0; i--) {
+                if (weaponsCopy[i] < weaponDiff) {
+                    weaponDiff -= weaponsCopy[i];
+                    weaponsCopy[i] = 0;
                 } else {
-                    usableAttackWeapons[i] = attackDiff;
-                    attackDiff = 0;
-                }
-
-                if (usableDefenseWeapons[i] < defenseDiff) {
-                    defenseDiff -= usableDefenseWeapons[i];
-                } else {
-                    usableDefenseWeapons[i] = defenseDiff;
-                    defenseDiff = 0;
+                    weaponsCopy[i] -= weaponDiff;
+                    weaponDiff = 0;
                 }
             }
-
-            for (int i = 0; i < attackWeapons.length; i++) {
-                weaponAttDefTotal[0] += usableAttackWeapons[i] * weaponStrength[i];
-                weaponAttDefTotal[1] += usableDefenseWeapons[i] * weaponStrength[i];
-            }
-
         }
 
-        return weaponAttDefTotal;
+        for (int i = 0; i < weaponsCopy.length; i++) {
+            weaponStrengthTotal += weaponsCopy[i] * weaponStrength[i];
+        }
 
-
+        return weaponStrengthTotal;
     }
 
     public String getAttackWeaponNames(int level) {

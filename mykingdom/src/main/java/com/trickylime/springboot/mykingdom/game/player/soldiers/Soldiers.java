@@ -17,12 +17,13 @@ public class Soldiers {
     private final long[] soldiersCost = {100, 1000, 10_000};
 
     private final long[] soldiersStrength = {10, 200, 5000};
-    private long[] soldierAttDefTotal = new long[2];
 
     public Soldiers() {
     }
 
     public long[] getSoldierAttDefTotal() {
+
+        long[] soldierAttDefTotal = new long[2];
 
         for (int i = 0; i < attackers.length; i++) {
             soldierAttDefTotal[0] += attackers[i] * soldiersStrength[i];

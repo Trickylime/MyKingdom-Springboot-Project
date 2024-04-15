@@ -42,19 +42,19 @@
             <tbody>
                 <tr>
                     <td>Workers</td>
-                    <td>${player.workers}</td>
+                    <td>${player.villagers.workers}</td>
                     <td>20 Food</td>
                     <td><input type="number" id="workers" name="workers" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
                 <tr>
                     <td>Farmers</td>
-                    <td>${player.farmers}</td>
+                    <td>${player.villagers.farmers}</td>
                     <td>20 Food</td>
                     <td><input type="number" id="farmers" name="farmers" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
                 <tr>
                     <td>Spies</td>
-                    <td>${player.spies}</td>
+                    <td>${player.villagers.spies}</td>
                     <td>20 Food</td>
                     <td><input type="number" id="spies" name="spies" value="0" required min="0" max="9999" size="10"/></td>
                 </tr>
@@ -88,19 +88,19 @@
                 <tbody>
                     <tr>
                         <td>Workers</td>
-                        <td>${player.workers}</td>
+                        <td>${player.villagers.workers}</td>
                         <td>20 Food</td>
                         <td><input type="number" id="workersSell" name="workers" value="0" required min="0" max="9999" size="10"/></td>
                     </tr>
                     <tr>
                         <td>Farmers</td>
-                        <td>${player.farmers}</td>
+                        <td>${player.villagers.farmers}</td>
                         <td>20 Food</td>
                         <td><input type="number" id="farmersSell" name="farmers" value="0" required min="0" max="9999" size="10"/></td>
                     </tr>
                     <tr>
                         <td>Spies</td>
-                        <td>${player.spies}</td>
+                        <td>${player.villagers.spies}</td>
                         <td>20 Food</td>
                         <td><input type="number" id="spiesSell" name="spies" value="0" required min="0" max="9999" size="10"/></td>
                     </tr>
