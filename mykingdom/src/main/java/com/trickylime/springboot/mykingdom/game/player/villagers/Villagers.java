@@ -2,12 +2,14 @@ package com.trickylime.springboot.mykingdom.game.player.villagers;
 
 public class Villagers {
 
-    private long workers = 10;
-    private long farmers = 10;
-    private long spies = 10;
-    private long total = 30;
+    private long workers = 0;
+    private long farmers = 0;
+    private long spies = 0;
 
     public Villagers() {
+        this.workers = 10;
+        this.farmers = 10;
+        this.spies = 5;
     }
 
     public long getWorkers() {
@@ -35,7 +37,6 @@ public class Villagers {
     }
 
     public long getTotal() {
-        this.total = getWorkers() + getFarmers() + getSpies();
-        return total;
+        return getWorkers() + getFarmers() + getSpies();
     }
 }

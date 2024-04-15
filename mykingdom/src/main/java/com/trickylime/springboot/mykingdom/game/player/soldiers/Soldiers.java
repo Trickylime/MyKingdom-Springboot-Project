@@ -21,16 +21,25 @@ public class Soldiers {
     public Soldiers() {
     }
 
-    public long[] getSoldierAttDefTotal() {
+    public long getAttackSoldierStrength() {
+        return calculateSoldierStrength(attackers);
+    }
 
-        long[] soldierAttDefTotal = new long[2];
+    public long getDefenceSoldierStrength() {
+        return calculateSoldierStrength(defenders);
+    }
 
-        for (int i = 0; i < attackers.length; i++) {
-            soldierAttDefTotal[0] += attackers[i] * soldiersStrength[i];
-            soldierAttDefTotal[1] += defenders[i] * soldiersStrength[i];
+    public long calculateSoldierStrength(long[] soldiers) {
+
+        long soldierStrengthTotal = 0;
+
+        for (int i = 0; i < soldiers.length; i++) {
+            soldierStrengthTotal += soldiers[i] * soldiersStrength[i];
         }
 
-        return soldierAttDefTotal;
+        soldierStrengthTotal += apprenticeWarriors * apprenticeWarriorsStrength;
+
+        return soldierStrengthTotal;
     }
 
     public String getAttackerNames(int index) {
@@ -89,7 +98,7 @@ public class Soldiers {
         return switch (request) {
             case "attack" -> attackSoldiersTotal;
             case "defense" -> defenseSoldiersTotal;
-            case "total" -> attackSoldiersTotal + defenseSoldiersTotal;
+            case "total" -> attackSoldiersTotal + defenseSoldiersTotal + apprenticeWarriors;
             default -> throw new IllegalStateException("Unexpected value: " + request);
         };
     }

@@ -39,13 +39,13 @@
         <div class="col-md-9">${player.gold}</div>
 
         <div class="col-md-3"><b>Gold Income</b></div>
-        <div class="col-md-9">0</div>
+        <div class="col-md-9">${player.goldIncome}</div>
 
         <div class="col-md-3"><b>Current Food</b></div>
         <div class="col-md-9">${player.food}</div>
 
         <div class="col-md-3"><b>Farming Income</b></div>
-        <div class="col-md-9">0</div>
+        <div class="col-md-9">${player.goldIncome}</div>
     </div>
     </br>
     <div class="row">
@@ -59,13 +59,13 @@
     <h1>Citizens Statistics</h1>
     <div class="row">
         <div class="col-md-3"><b>Total Population</b></div>
-        <div class="col-md-9">0</div>
+        <div class="col-md-9">${player.villagers.total + player.soldiers.getTotal("total")}</div>
 
         <div class="col-md-3"><b>Villagers</b></div>
-        <div class="col-md-9">0</div>
+        <div class="col-md-9">${player.villagers.total}</div>
 
         <div class="col-md-3"><b>Soldiers</b></div>
-        <div class="col-md-9">0</div>
+        <div class="col-md-9">${player.soldiers.getTotal("total")}</div>
     </div>
 
 <%@ include file="common/footer.jspf" %>

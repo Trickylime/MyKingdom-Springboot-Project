@@ -58,7 +58,7 @@ public class Player {
 
         long attackers = soldiers.getTotal("attack");
 
-        long attack = soldiers.getSoldierAttDefTotal()[0]
+        long attack = soldiers.getAttackSoldierStrength()
                 + weapons.getAttackWeaponStrength(attackers);
         attack += attack * getUpgrades().getMultiplier(upgrades.getAttackLevel());
 
@@ -69,7 +69,7 @@ public class Player {
 
         long defenders = soldiers.getTotal("defense");
 
-        long defense = soldiers.getSoldierAttDefTotal()[1]
+        long defense = soldiers.getDefenceSoldierStrength()
                 + weapons.getDefenseWeaponStrength(defenders);
         defense += defense * getUpgrades().getMultiplier(upgrades.getDefenseLevel());
 
@@ -77,8 +77,13 @@ public class Player {
     }
 
     public long getSpy() {
-        long spy = 10;
-        return spy;
+
+        long spies = villagers.getSpies();
+
+        long espionage = spies * 20;
+        espionage += espionage * getUpgrades().getMultiplier((upgrades.getSpyLevel()));
+
+        return espionage;
     }
 
     public long getFarmingIncome() {

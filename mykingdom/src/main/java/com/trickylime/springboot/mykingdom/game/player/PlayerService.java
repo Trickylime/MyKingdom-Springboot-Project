@@ -92,7 +92,7 @@ public class PlayerService {
         long apprenticeCost = 0;
 
         for (int i = 0; i < attackers.length; i++) {
-            totalSpend += attackers[i] + defenders[i] * player.getSoldiers().getSoldiersCost(i);
+            totalSpend += (attackers[i] + defenders[i]) * player.getSoldiers().getSoldiersCost(i);
             apprenticeCost += attackers[i] + defenders[i];
         }
 
