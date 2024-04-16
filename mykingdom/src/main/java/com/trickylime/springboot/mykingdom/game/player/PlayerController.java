@@ -4,6 +4,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -203,18 +204,33 @@ public class PlayerController {
     }
 
     @RequestMapping(value = "battle", method = RequestMethod.GET)
-    public String battlePlayers(ModelMap model) {
+    public String playerRankings(ModelMap model) {
 
         Player player = getLoggedInUser();
         model.put("player", player);
 
         List<Player> playerList = playerService.getPlayers();
         model.put("playerList", playerList);
-        System.out.println(playerList);
+
+        return "rankings";
+    }
+
+    @RequestMapping(value = "stats/{username}")
+    public String playerStats(@PathVariable String username, ModelMap model) {
+
+        Player player = getLoggedInUser();
+        model.put("player", player);
+
+        return "stats";
+    }
+
+    @RequestMapping(value = "battle/{username}")
+    public String battlePlayer(ModelMap model) {
+
+        Player player = getLoggedInUser();
+        model.put("player", player);
 
         return "battle";
-
-
     }
 
     private Player getLoggedInUser() {

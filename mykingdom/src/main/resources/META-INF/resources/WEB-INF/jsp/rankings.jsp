@@ -38,10 +38,10 @@
         <tbody>
             <c:forEach items="${playerList}" var="playerList">
                 <tr>
-                    <td>${player.rank}</td>
-                    <td>${player.username}</td>
-                    <td>${player.population}</td>
-                    <td>${player.gold}</td>
+                    <td>rank</td>
+                    <td>${playerList.username}</td>
+                    <td>${playerList.population}</td>
+                    <td>${playerList.gold}</td>
                 </tr>
             </c:forEach>
         </tbody>

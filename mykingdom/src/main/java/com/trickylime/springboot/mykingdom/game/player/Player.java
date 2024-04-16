@@ -105,6 +105,10 @@ public class Player {
         return (long) ((workers * 3) + (farmers * 0.1));
     }
 
+    public long getPopulation() {
+        return villagers.getTotal() + soldiers.getTotal("total");
+    }
+
 
     public void setFood(long food) {
         this.food += food;
