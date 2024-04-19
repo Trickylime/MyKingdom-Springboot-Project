@@ -39,7 +39,7 @@
             <c:forEach items="${playerList}" var="playerList">
                 <tr>
                     <td>rank</td>
-                    <td>${playerList.username}</td>
+                    <td><a class="nav-link" href="/stats/${playerList.username}">${playerList.username}</a></td>
                     <td>${playerList.population}</td>
                     <td>${playerList.gold}</td>
                 </tr>

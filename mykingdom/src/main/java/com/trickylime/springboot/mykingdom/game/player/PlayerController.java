@@ -203,7 +203,7 @@ public class PlayerController {
         }
     }
 
-    @RequestMapping(value = "battle", method = RequestMethod.GET)
+    @RequestMapping(value = "rankings", method = RequestMethod.GET)
     public String playerRankings(ModelMap model) {
 
         Player player = getLoggedInUser();
@@ -221,11 +221,14 @@ public class PlayerController {
         Player player = getLoggedInUser();
         model.put("player", player);
 
+        Player opponent = playerService.findByUsername(username).get(0);
+        model.put("opponent", opponent);
+
         return "stats";
     }
 
     @RequestMapping(value = "battle/{username}")
-    public String battlePlayer(ModelMap model) {
+    public String battlePlayer(@PathVariable String username, ModelMap model) {
 
         Player player = getLoggedInUser();
         model.put("player", player);

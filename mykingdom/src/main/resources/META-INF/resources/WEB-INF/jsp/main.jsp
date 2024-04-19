@@ -67,5 +67,6 @@
         <div class="col-md-3"><b>Soldiers</b></div>
         <div class="col-md-9">${player.soldiers.getTotal("total")}</div>
     </div>
+</div>
 
 <%@ include file="common/footer.jspf" %>
