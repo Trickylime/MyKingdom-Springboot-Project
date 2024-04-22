@@ -234,4 +234,28 @@ public class PlayerService {
         }
         return false;
     }
+
+    public boolean battleOpponents(Player player, String opponentUsername, int battleTurnsSpent) {
+
+        Player opponent = findByUsername(opponentUsername).get(0);
+
+        if (battleTurnsSpent > player.getBattleTurns()) {
+            return false;
+        }
+
+        if (player.getAttack() > opponent.getDefense()) {
+
+            long gold = (long) (opponent.getGold() * 0.95);
+
+            opponent.setGold(-gold);
+            player.setGold(gold);
+        }
+
+        player.setBattleTurns(-battleTurnsSpent);
+        return true;
+    }
+
+    public boolean spyOnOpponents(Player player, String opponentUsername) {
+        return true;
+    }
 }

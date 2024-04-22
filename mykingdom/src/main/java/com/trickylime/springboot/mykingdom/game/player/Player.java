@@ -24,8 +24,8 @@ public class Player {
         this.id = id;
         this.username = username;
         this.email = email;
-        this.gold = 1_000;
-        this.food = 100;
+        this.gold = 1_000_000;
+        this.food = 1_000_000;
         this.battleTurns = 30;
         this.villagers = new Villagers();
         this.soldiers = new Soldiers();

@@ -215,8 +215,8 @@ public class PlayerController {
         return "rankings";
     }
 
-    @RequestMapping(value = "stats/{username}")
-    public String playerStats(@PathVariable String username, ModelMap model) {
+    @RequestMapping(value = "stats/{username}", method = RequestMethod.GET)
+    public String opponentStats(@PathVariable String username, ModelMap model) {
 
         Player player = getLoggedInUser();
         model.put("player", player);
@@ -227,13 +227,38 @@ public class PlayerController {
         return "stats";
     }
 
-    @RequestMapping(value = "battle/{username}")
-    public String battlePlayer(@PathVariable String username, ModelMap model) {
+    @RequestMapping(value = "battle", method = RequestMethod.POST)
+    public String battleOpponent(@RequestParam String opponentUsername, @RequestParam int battleTurns, ModelMap model) {
 
         Player player = getLoggedInUser();
         model.put("player", player);
 
-        return "battle";
+        Player opponent = playerService.findByUsername(opponentUsername).get(0);
+        model.put("opponent", opponent);
+
+
+        if (playerService.battleOpponents(player, opponentUsername, battleTurns)) {
+            return "battle";
+        } else {
+            model.put("errorMessage", "Insufficient turns. Please try again.");
+            model.put("player", player);
+
+            return "redirect:stats";
+        }
+    }
+
+    @RequestMapping(value = "spy", method = RequestMethod.POST)
+    public String spyOnPlayer(@RequestParam String opponentUsername, ModelMap model) {
+
+        Player player = getLoggedInUser();
+        model.put("player", player);
+
+        Player opponent = playerService.findByUsername(opponentUsername).get(0);
+        model.put("opponent", opponent);
+
+        playerService.spyOnOpponents(player, opponentUsername);
+
+        return "spy";
     }
 
     private Player getLoggedInUser() {
