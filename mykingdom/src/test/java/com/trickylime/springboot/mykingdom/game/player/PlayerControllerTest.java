@@ -80,6 +80,9 @@ class PlayerControllerTest {
 
     @Test
     void soldiersPage() {
+
+        String viewName = playerControllerMock.soldiersPage(mockedPlayer, model);
+        assertEquals("soldiers", viewName);
     }
 
     @Test
@@ -92,6 +95,9 @@ class PlayerControllerTest {
 
     @Test
     void weaponsPage() {
+
+        String viewName = playerControllerMock.weaponsPage(mockedPlayer, model);
+        assertEquals("weapons", viewName);
     }
 
     @Test
@@ -104,6 +110,9 @@ class PlayerControllerTest {
 
     @Test
     void upgradesPage() {
+
+        String viewName = playerControllerMock.upgradesPage(mockedPlayer, model);
+        assertEquals("upgrades", viewName);
     }
 
     @Test
@@ -112,6 +121,9 @@ class PlayerControllerTest {
 
     @Test
     void sciencePage() {
+
+        String viewName = playerControllerMock.sciencePage(mockedPlayer, model);
+        assertEquals("science", viewName);
     }
 
     @Test
