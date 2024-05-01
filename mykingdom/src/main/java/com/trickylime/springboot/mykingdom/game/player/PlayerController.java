@@ -4,10 +4,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,29 +18,22 @@ public class PlayerController {
     }
 
     @RequestMapping("main")
-    public String ListPlayerStats(ModelMap model) {
-
-        Player player = getLoggedInUser();
-        model.put("player", player);
+    public String listPlayerStats(@ModelAttribute("player") Player player, ModelMap model) {
 
         return "main";
     }
 
     @RequestMapping(value = "villagers", method = RequestMethod.GET)
-    public String villagersPage(ModelMap model) {
-
-        Player player = getLoggedInUser();
-        model.put("player", player);
+    public String villagersPage(@ModelAttribute("player") Player player, ModelMap model) {
 
         return "villagers";
     }
 
 
     @RequestMapping(value = "buyVillagers", method = RequestMethod.POST)
-    public String buyVillagers(@RequestParam int workers, @RequestParam int farmers, @RequestParam int spies,
+    public String buyVillagers(@ModelAttribute("player") Player player,
+                               @RequestParam int workers, @RequestParam int farmers, @RequestParam int spies,
                                ModelMap model) {
-
-        Player player = getLoggedInUser();
 
         if (playerService.buyVillagers(player, workers, farmers, spies)) {
             return "redirect:villagers";
@@ -56,10 +46,9 @@ public class PlayerController {
     }
 
     @RequestMapping(value = "sellVillagers", method = RequestMethod.POST)
-    public String sellVillagers(@RequestParam int workers, @RequestParam int farmers, @RequestParam int spies,
+    public String sellVillagers(@ModelAttribute("player") Player player,
+                                @RequestParam int workers, @RequestParam int farmers, @RequestParam int spies,
                                 ModelMap model) {
-
-        Player player = getLoggedInUser();
 
         if (playerService.sellVillagers(player, workers, farmers, spies)) {
             return "redirect:villagers";
@@ -72,19 +61,14 @@ public class PlayerController {
     }
 
     @RequestMapping(value = "soldiers", method = RequestMethod.GET)
-    public String soldiersPage(ModelMap model) {
-
-        Player player = getLoggedInUser();
-        model.put("player", player);
+    public String soldiersPage(@ModelAttribute("player") Player player, ModelMap model) {
 
         return "soldiers";
     }
 
     @RequestMapping(value = "hireApprentice", method = RequestMethod.POST)
-    public String hireApprentice(@RequestParam int apprenticeWarriors, ModelMap model) {
-
-        Player player = getLoggedInUser();
-        model.put("player", player);
+    public String hireApprentice(@ModelAttribute("player") Player player,
+                                 @RequestParam int apprenticeWarriors, ModelMap model) {
 
         if(playerService.hireApprentice(player, apprenticeWarriors)) {
             return "redirect:soldiers";
@@ -97,10 +81,8 @@ public class PlayerController {
     }
 
     @RequestMapping(value = "trainApprentice", method = RequestMethod.POST)
-    public String trainApprentice(@RequestParam long[] attackers, @RequestParam long[] defenders, ModelMap model) {
-
-        Player player = getLoggedInUser();
-        model.put("player", player);
+    public String trainApprentice(@ModelAttribute("player") Player player,
+                                  @RequestParam long[] attackers, @RequestParam long[] defenders, ModelMap model) {
 
         if(playerService.trainApprentice(player, attackers, defenders)) {
             return "redirect:soldiers";
@@ -113,19 +95,14 @@ public class PlayerController {
     }
 
     @RequestMapping(value = "weapons", method = RequestMethod.GET)
-    public String weaponsPage(ModelMap model) {
-
-        Player player = getLoggedInUser();
-        model.put("player", player);
+    public String weaponsPage(@ModelAttribute("player") Player player, ModelMap model) {
 
         return "weapons";
     }
 
     @RequestMapping(value = "buyWeapons", method = RequestMethod.POST)
-    public String buyWeapons(@RequestParam long[] attackWeapons, @RequestParam long[] defenseWeapons, ModelMap model) {
-
-        Player player = getLoggedInUser();
-        model.put("player", player);
+    public String buyWeapons(@ModelAttribute("player") Player player,
+                             @RequestParam long[] attackWeapons, @RequestParam long[] defenseWeapons, ModelMap model) {
 
         if(playerService.buyWeapons(player, attackWeapons, defenseWeapons)) {
             return "redirect:weapons";
@@ -138,10 +115,8 @@ public class PlayerController {
     }
 
     @RequestMapping(value = "sellWeapons", method = RequestMethod.POST)
-    public String sellWeapons(@RequestParam long[] attackWeapons, @RequestParam long[] defenseWeapons, ModelMap model) {
-
-        Player player = getLoggedInUser();
-        model.put("player", player);
+    public String sellWeapons(@ModelAttribute("player") Player player,
+                              @RequestParam long[] attackWeapons, @RequestParam long[] defenseWeapons, ModelMap model) {
 
         if(playerService.sellWeapons(player, attackWeapons, defenseWeapons)) {
             return "redirect:weapons";
@@ -154,19 +129,14 @@ public class PlayerController {
     }
 
     @RequestMapping(value = "upgrades", method = RequestMethod.GET)
-    public String upgradesPage(ModelMap model) {
-
-        Player player = getLoggedInUser();
-        model.put("player", player);
+    public String upgradesPage(@ModelAttribute("player") Player player, ModelMap model) {
 
         return "upgrades";
     }
 
     @RequestMapping(value = "upgrades", method = RequestMethod.POST)
-    public String buyUpgrade(@RequestParam String upgradeValue, ModelMap model) {
-
-        Player player = getLoggedInUser();
-        model.put("player", player);
+    public String buyUpgrade(@ModelAttribute("player") Player player,
+                             @RequestParam String upgradeValue, ModelMap model) {
 
         if (playerService.buyUpgrade(player, upgradeValue)) {
             return "redirect:upgrades";
@@ -179,19 +149,14 @@ public class PlayerController {
     }
 
     @RequestMapping(value = "science", method = RequestMethod.GET)
-    public String sciencePage(ModelMap model) {
-
-        Player player = getLoggedInUser();
-        model.put("player", player);
+    public String sciencePage(@ModelAttribute("player") Player player, ModelMap model) {
 
         return "science";
     }
 
     @RequestMapping(value = "research", method = RequestMethod.POST)
-    public String buyScience(@RequestParam String researchValue, ModelMap model) {
-
-        Player player = getLoggedInUser();
-        model.put("player", player);
+    public String buyScience(@ModelAttribute("player") Player player,
+                             @RequestParam String researchValue, ModelMap model) {
 
         if (playerService.buyScience(player, researchValue)) {
             return "redirect:science";
@@ -204,10 +169,7 @@ public class PlayerController {
     }
 
     @RequestMapping(value = "rankings", method = RequestMethod.GET)
-    public String playerRankings(ModelMap model) {
-
-        Player player = getLoggedInUser();
-        model.put("player", player);
+    public String playerRankings(@ModelAttribute("player") Player player, ModelMap model) {
 
         List<Player> playerList = playerService.getPlayers();
         model.put("playerList", playerList);
@@ -216,10 +178,8 @@ public class PlayerController {
     }
 
     @RequestMapping(value = "stats/{username}", method = RequestMethod.GET)
-    public String opponentStats(@PathVariable String username, ModelMap model) {
-
-        Player player = getLoggedInUser();
-        model.put("player", player);
+    public String opponentStats(@ModelAttribute("player") Player player,
+                                @PathVariable String username, ModelMap model) {
 
         Player opponent = playerService.findByUsername(username).get(0);
         model.put("opponent", opponent);
@@ -228,14 +188,11 @@ public class PlayerController {
     }
 
     @RequestMapping(value = "battle", method = RequestMethod.POST)
-    public String battleOpponent(@RequestParam String opponentUsername, @RequestParam int battleTurns, ModelMap model) {
-
-        Player player = getLoggedInUser();
-        model.put("player", player);
+    public String battleOpponent(@ModelAttribute("player") Player player,
+                                 @RequestParam String opponentUsername, @RequestParam int battleTurns, ModelMap model) {
 
         Player opponent = playerService.findByUsername(opponentUsername).get(0);
         model.put("opponent", opponent);
-
 
         if (playerService.battleOpponents(player, opponentUsername, battleTurns)) {
             return "battle";
@@ -248,10 +205,8 @@ public class PlayerController {
     }
 
     @RequestMapping(value = "spy", method = RequestMethod.POST)
-    public String spyOnPlayer(@RequestParam String opponentUsername, ModelMap model) {
-
-        Player player = getLoggedInUser();
-        model.put("player", player);
+    public String spyOnPlayer(@ModelAttribute("player") Player player,
+                              @RequestParam String opponentUsername, ModelMap model) {
 
         Player opponent = playerService.findByUsername(opponentUsername).get(0);
         model.put("opponent", opponent);
@@ -261,7 +216,7 @@ public class PlayerController {
         return "spy";
     }
 
-    private Player getLoggedInUser() {
+    Player getLoggedInUser() {
         Authentication authentication =
                 SecurityContextHolder.getContext().getAuthentication();
 
@@ -270,4 +225,10 @@ public class PlayerController {
 
         return playerList.get(0);
     }
+
+    @ModelAttribute("player")
+    public Player getPlayer() {
+        return getLoggedInUser();
+    }
+
 }
