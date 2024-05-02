@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -51,12 +52,12 @@ class PlayerControllerTest {
 
         if (isEnoughFood) {
             assertEquals("redirect:villagers", viewName);
-            verify(playerServiceMock, times(1)).buyVillagers(mockedPlayer, workers, farmers, spies);
         } else {
             assertEquals("villagers", viewName);
             assertEquals("Insufficient food. Please try again.", model.get("errorMessage"));
-            verify(playerServiceMock, times(1)).buyVillagers(mockedPlayer, workers, farmers, spies);
         }
+
+        verify(playerServiceMock, times(1)).buyVillagers(mockedPlayer, workers, farmers, spies);
     }
 
     @ParameterizedTest
@@ -70,12 +71,12 @@ class PlayerControllerTest {
 
         if (isEnoughVillagers) {
             assertEquals("redirect:villagers", viewName);
-            verify(playerServiceMock, times(1)).sellVillagers(mockedPlayer, workers, farmers, spies);
         } else {
             assertEquals("villagers", viewName);
             assertEquals("Insufficient villagers. Please try again.", model.get("errorMessage"));
-            verify(playerServiceMock, times(1)).sellVillagers(mockedPlayer, workers, farmers, spies);
         }
+
+        verify(playerServiceMock, times(1)).sellVillagers(mockedPlayer, workers, farmers, spies);
     }
 
     @Test
@@ -85,12 +86,43 @@ class PlayerControllerTest {
         assertEquals("soldiers", viewName);
     }
 
-    @Test
-    void hireApprentice() {
+    @ParameterizedTest
+    @CsvSource({"5, true", "5, false"})
+    void hireApprentice_trueAndFalseTest(int apprenticeWarriors, boolean isEnoughFood) {
+
+        when(playerServiceMock.hireApprentice(any(Player.class), anyInt())).thenReturn(isEnoughFood);
+
+        String viewName = playerControllerMock.hireApprentice(mockedPlayer, apprenticeWarriors, model);
+
+        if (isEnoughFood) {
+            assertEquals("redirect:soldiers", viewName);
+        } else {
+            assertEquals("soldiers", viewName);
+            assertEquals("Insufficient food. Please try again.", model.get("errorMessage"));
+        }
+
+        verify(playerServiceMock, times(1)).hireApprentice(mockedPlayer, apprenticeWarriors);
     }
 
-    @Test
-    void trainApprentice() {
+    @ParameterizedTest
+    @CsvSource({"true", "false"})
+    void trainApprentice_trueAndFalseTest(boolean isEnoughFood) {
+
+        when(playerServiceMock.trainApprentice(any(Player.class),
+                ArgumentMatchers.<long[]>any(), ArgumentMatchers.<long[]>any()))
+                .thenReturn(isEnoughFood);
+
+        long[] attackers = new long[0], defenders = new long[3];
+        String viewName = playerControllerMock.trainApprentice(mockedPlayer, attackers, defenders, model);
+
+        if (isEnoughFood) {
+            assertEquals("redirect:soldiers", viewName);
+        } else {
+            assertEquals("soldiers", viewName);
+            assertEquals("Insufficient food. Please try again.", model.get("errorMessage"));
+        }
+
+        verify(playerServiceMock, times(1)).trainApprentice(mockedPlayer, attackers, defenders);
     }
 
     @Test
@@ -100,8 +132,26 @@ class PlayerControllerTest {
         assertEquals("weapons", viewName);
     }
 
-    @Test
-    void buyWeapons() {
+    @ParameterizedTest
+    @CsvSource({"true", "false"})
+    void buyWeapons_trueAndFalseTest(boolean isEnoughGold) {
+
+        when(playerServiceMock.buyWeapons(any(Player.class),
+                ArgumentMatchers.<long[]>any(), ArgumentMatchers.<long[]>any()))
+                .thenReturn(isEnoughGold);
+
+        long[] attackWeapons = new long[0], defenceWeapons = new long[3];
+        String viewName = playerControllerMock.buyWeapons(mockedPlayer, attackWeapons, defenceWeapons, model);
+
+        if (isEnoughGold) {
+            assertEquals("redirect:weapons", viewName);
+        } else {
+            assertEquals("weapons", viewName);
+            assertEquals("Insufficient gold. Please try again.", model.get("errorMessage"));
+        }
+
+        verify(playerServiceMock, times(1))
+                .buyWeapons(mockedPlayer, attackWeapons, defenceWeapons);
     }
 
     @Test
