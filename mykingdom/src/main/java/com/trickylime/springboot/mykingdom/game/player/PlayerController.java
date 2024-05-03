@@ -171,7 +171,7 @@ public class PlayerController {
     @RequestMapping(value = "rankings", method = RequestMethod.GET)
     public String playerRankings(@ModelAttribute("player") Player player, ModelMap model) {
 
-        List<Player> playerList = playerService.getPlayers();
+        List<Player> playerList = playerService.getAllPlayersList();
         model.put("playerList", playerList);
 
         return "rankings";

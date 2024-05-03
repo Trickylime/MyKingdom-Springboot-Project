@@ -10,6 +10,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.ui.ModelMap;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
@@ -25,6 +28,8 @@ class PlayerControllerTest {
 
     @Mock
     private Player mockedPlayer;
+    @Mock
+    private Player mockedOpponent;
 
     ModelMap model = new ModelMap();
 
@@ -154,8 +159,26 @@ class PlayerControllerTest {
                 .buyWeapons(mockedPlayer, attackWeapons, defenceWeapons);
     }
 
-    @Test
-    void sellWeapons() {
+    @ParameterizedTest
+    @CsvSource({"true", "false"})
+    void sellWeapons_trueAndFalseTest(boolean isEnoughWeapons) {
+
+        when(playerServiceMock.sellWeapons(any(Player.class),
+                ArgumentMatchers.<long[]>any(), ArgumentMatchers.<long[]>any()))
+                .thenReturn(isEnoughWeapons);
+
+        long[] attackWeapons = new long[0], defenceWeapons = new long[3];
+        String viewName = playerControllerMock.sellWeapons(mockedPlayer, attackWeapons, defenceWeapons, model);
+
+        if (isEnoughWeapons) {
+            assertEquals("redirect:weapons", viewName);
+        } else {
+            assertEquals("weapons", viewName);
+            assertEquals("Insufficient weapons. Please try again.", model.get("errorMessage"));
+        }
+
+        verify(playerServiceMock, times(1))
+                .sellWeapons(mockedPlayer, attackWeapons, defenceWeapons);
     }
 
     @Test
@@ -165,8 +188,22 @@ class PlayerControllerTest {
         assertEquals("upgrades", viewName);
     }
 
-    @Test
-    void buyUpgrade() {
+    @ParameterizedTest
+    @CsvSource({"true", "false"})
+    void buyUpgrade_trueAndFalseTest(boolean isEnoughGold) {
+
+        when(playerServiceMock.buyUpgrade(any(Player.class), anyString())).thenReturn(isEnoughGold);
+
+        String viewName = playerControllerMock.buyUpgrade(mockedPlayer, "", model);
+
+        if (isEnoughGold) {
+            assertEquals("redirect:upgrades", viewName);
+        } else {
+            assertEquals("upgrades", viewName);
+            assertEquals("Insufficient Gold. Please try again.", model.get("errorMessage"));
+        }
+
+        verify(playerServiceMock, times(1)).buyUpgrade(mockedPlayer, "");
     }
 
     @Test
@@ -176,20 +213,75 @@ class PlayerControllerTest {
         assertEquals("science", viewName);
     }
 
-    @Test
-    void buyScience() {
+    @ParameterizedTest
+    @CsvSource({"true", "false"})
+    void buyScience_trueAndFalseTest(boolean isEnoughGold) {
+
+        when(playerServiceMock.buyScience(any(Player.class), anyString())).thenReturn(isEnoughGold);
+
+        String viewName = playerControllerMock.buyScience(mockedPlayer, "", model);
+
+        if (isEnoughGold) {
+            assertEquals("redirect:science", viewName);
+        } else {
+            assertEquals("science", viewName);
+            assertEquals("Insufficient Gold. Please try again.", model.get("errorMessage"));
+        }
+
+        verify(playerServiceMock, times(1)).buyScience(mockedPlayer, "");
     }
 
     @Test
-    void playerRankings() {
+    void playerRankings_Test() {
+
+        List<Player> mockPlayerList = Arrays.asList(
+                new Player(1, "MockOne", "mockone@mock.com"),
+                new Player(2, "MockTwo", "mocktwo@mock.com"),
+                new Player(3, "MockThree", "mockthree@mock.com")
+        );
+
+        when(playerServiceMock.getAllPlayersList()).thenReturn(mockPlayerList);
+
+        String viewName = playerControllerMock.playerRankings(mockedPlayer, model);
+        assertEquals("rankings", viewName);
+
+        Object playerList = model.get("playerList");
+        assertEquals(mockPlayerList, playerList);
     }
 
     @Test
-    void opponentStats() {
+    void opponentStats_Test() {
+
+        when(playerServiceMock.findByUsername(anyString())).thenReturn(List.of(mockedOpponent));
+
+        String viewName = playerControllerMock.opponentStats(mockedPlayer, anyString(), model);
+
+        assertEquals("stats", viewName);
+        assertEquals(mockedOpponent, model.get("opponent"));
     }
 
-    @Test
-    void battleOpponent() {
+    @ParameterizedTest
+    @CsvSource({"true", "false"})
+    void battleOpponent_trueAndFalseTest(boolean isEnoughBattleTurns) {
+
+        when(playerServiceMock.battleOpponents(any(Player.class), anyString(), anyInt()))
+                .thenReturn(isEnoughBattleTurns);
+
+        when(playerServiceMock.findByUsername("")).thenReturn(List.of(mockedOpponent));
+
+        String viewName = playerControllerMock.battleOpponent(mockedPlayer, "", 10, model);
+
+        if (isEnoughBattleTurns) {
+            assertEquals("battle", viewName);
+        } else {
+            assertEquals("redirect:stats", viewName);
+            assertEquals("Insufficient turns. Please try again.", model.get("errorMessage"));
+        }
+
+        assertEquals(mockedOpponent, model.get("opponent"));
+
+        verify(playerServiceMock, times(1))
+                .battleOpponents(mockedPlayer, "", 10);
     }
 
     @Test

@@ -35,7 +35,7 @@ public class PlayerService {
         return player;
     }
 
-    public List<Player> getPlayers() {
+    public List<Player> getAllPlayersList() {
         return players;
     }
 
