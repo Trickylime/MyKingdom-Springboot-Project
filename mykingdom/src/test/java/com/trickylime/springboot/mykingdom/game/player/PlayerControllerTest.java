@@ -252,7 +252,7 @@ class PlayerControllerTest {
     @Test
     void opponentStats_Test() {
 
-        when(playerServiceMock.findByUsername(anyString())).thenReturn(List.of(mockedOpponent));
+        when(playerServiceMock.findByUsername(anyString())).thenReturn(mockedOpponent);
 
         String viewName = playerControllerMock.opponentStats(mockedPlayer, anyString(), model);
 
@@ -267,7 +267,7 @@ class PlayerControllerTest {
         when(playerServiceMock.battleOpponents(any(Player.class), anyString(), anyInt()))
                 .thenReturn(isEnoughBattleTurns);
 
-        when(playerServiceMock.findByUsername("")).thenReturn(List.of(mockedOpponent));
+        when(playerServiceMock.findByUsername("")).thenReturn(mockedOpponent);
 
         String viewName = playerControllerMock.battleOpponent(mockedPlayer, "", 10, model);
 

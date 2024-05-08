@@ -181,7 +181,7 @@ public class PlayerController {
     public String opponentStats(@ModelAttribute("player") Player player,
                                 @PathVariable String username, ModelMap model) {
 
-        Player opponent = playerService.findByUsername(username).get(0);
+        Player opponent = playerService.findByUsername(username);
         model.put("opponent", opponent);
 
         return "stats";
@@ -191,7 +191,7 @@ public class PlayerController {
     public String battleOpponent(@ModelAttribute("player") Player player,
                                  @RequestParam String opponentUsername, @RequestParam int battleTurns, ModelMap model) {
 
-        Player opponent = playerService.findByUsername(opponentUsername).get(0);
+        Player opponent = playerService.findByUsername(opponentUsername);
         model.put("opponent", opponent);
 
         if (playerService.battleOpponents(player, opponentUsername, battleTurns)) {
@@ -208,7 +208,7 @@ public class PlayerController {
     public String spyOnPlayer(@ModelAttribute("player") Player player,
                               @RequestParam String opponentUsername, ModelMap model) {
 
-        Player opponent = playerService.findByUsername(opponentUsername).get(0);
+        Player opponent = playerService.findByUsername(opponentUsername);
         model.put("opponent", opponent);
 
         playerService.spyOnOpponents(player, opponentUsername);
@@ -221,9 +221,9 @@ public class PlayerController {
                 SecurityContextHolder.getContext().getAuthentication();
 
         String username = authentication.getName();
-        List<Player> playerList = playerService.findByUsername(username);
+        Player playerList = playerService.findByUsername(username);
 
-        return playerList.get(0);
+        return playerList;
     }
 
     @ModelAttribute("player")

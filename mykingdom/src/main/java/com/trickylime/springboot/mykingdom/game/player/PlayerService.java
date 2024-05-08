@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
 @Service
@@ -19,12 +20,19 @@ public class PlayerService {
         players.add(new Player(playerCount++, "Katy", "katy@gmail.com"));
     }
 
-    public List<Player> findByUsername(String username) {
-
+    public Player findByUsername(String username) {
         Predicate<? super Player> predicate =
                 player -> player.getUsername().equalsIgnoreCase(username);
 
-        return players.stream().filter(predicate).toList();
+        List<Player> filteredPlayers = players.stream()
+                .filter(predicate)
+                .toList();
+
+        if (!filteredPlayers.isEmpty()) {
+            return filteredPlayers.get(0);
+        } else {
+            throw new NoSuchElementException("Player with username '" + username + "' not found");
+        }
     }
 
     public Player addPlayer(String username, String email) {
@@ -237,7 +245,7 @@ public class PlayerService {
 
     public boolean battleOpponents(Player player, String opponentUsername, int battleTurnsSpent) {
 
-        Player opponent = findByUsername(opponentUsername).get(0);
+        Player opponent = findByUsername(opponentUsername);
 
         if (battleTurnsSpent > player.getBattleTurns()) {
             return false;
