@@ -6,6 +6,8 @@ import com.trickylime.springboot.mykingdom.game.player.upgrades.Upgrades;
 import com.trickylime.springboot.mykingdom.game.player.villagers.Villagers;
 import com.trickylime.springboot.mykingdom.game.player.weapons.Weapons;
 
+import java.util.HashMap;
+
 public class Player {
 
     private int id;
@@ -19,6 +21,7 @@ public class Player {
     private final Weapons weapons;
     private final Upgrades upgrades;
     private final Science science;
+    private HashMap<String, Battle> battleHistory;
 
     public Player(int id, String username, String email) {
         this.id = id;
@@ -26,12 +29,13 @@ public class Player {
         this.email = email;
         this.gold = 1_000_000;
         this.food = 1_000_000;
-        this.battleTurns = 30;
+        this.battleTurns = 9;
         this.villagers = new Villagers();
         this.soldiers = new Soldiers();
         this.weapons = new Weapons();
         this.upgrades = new Upgrades();
         this.science = new Science();
+        this.battleHistory = new HashMap<>();
     }
 
     public String getUsername() {
@@ -140,6 +144,15 @@ public class Player {
 
     public Science getScience() {
         return science;
+    }
+
+    public HashMap<String, Battle> getBattleHistory() {
+        return battleHistory;
+    }
+
+
+    public void setBattleHistory(String opponentName, Battle battle) {
+        this.battleHistory.put(opponentName, battle);
     }
 
     @Override

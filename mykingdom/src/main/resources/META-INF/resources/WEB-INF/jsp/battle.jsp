@@ -6,8 +6,8 @@
     <hr>
     <div>You lead your army in to battle!</div>
     </br>
-    <div>your forces deal ${player.attack} damage!</div>
-    <div>${opponent.username}s defenses deal ${opponent.defense} damage!</div>
+    <div>your forces deal ${playerAttack} damage!</div>
+    <div>${opponent.username}&apos;s defenses deal ${opponent.defense} damage!</div>
     </br>
     <div>Your army was defeated.</div>
 </div>

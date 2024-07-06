@@ -34,7 +34,7 @@
         <div class="col-md-3"><b>Battle Turns</b></div>
         <form:form method="post" action="../battle">
             <div class="col-md-4">
-                <input type="number" name="battleTurns" value="0" required min="0" max="10" size="5"/>
+                <input type="number" name="battleTurnsSpent" value="1" required min="1" max="10" size="5"/>
             </div>
             <div class="col-md-5">
                 <input type="submit" value="ATTACK" >

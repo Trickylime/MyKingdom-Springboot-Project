@@ -5,6 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -179,28 +180,36 @@ public class PlayerController {
 
     @RequestMapping(value = "stats/{username}", method = RequestMethod.GET)
     public String opponentStats(@ModelAttribute("player") Player player,
-                                @PathVariable String username, ModelMap model) {
+                                @PathVariable String username,
+                                @RequestParam(value = "errorMessage", required = false) String errorMessage,
+                                ModelMap model) {
 
         Player opponent = playerService.findByUsername(username);
         model.put("opponent", opponent);
+
+        if (errorMessage != null) {
+            model.put("errorMessage", errorMessage);
+        }
 
         return "stats";
     }
 
     @RequestMapping(value = "battle", method = RequestMethod.POST)
     public String battleOpponent(@ModelAttribute("player") Player player,
-                                 @RequestParam String opponentUsername, @RequestParam int battleTurns, ModelMap model) {
+                                 @RequestParam String opponentUsername, @RequestParam int battleTurnsSpent,
+                                 RedirectAttributes redirectAttributes, ModelMap model) {
 
         Player opponent = playerService.findByUsername(opponentUsername);
         model.put("opponent", opponent);
 
-        if (playerService.battleOpponents(player, opponentUsername, battleTurns)) {
+        if (playerService.battleOpponents(player, opponentUsername, battleTurnsSpent)) {
+            long playerAttackPower = (player.getAttack() * battleTurnsSpent) / 10;
+            model.put("playerAttack", playerAttackPower);
             return "battle";
         } else {
-            model.put("errorMessage", "Insufficient turns. Please try again.");
-            model.put("player", player);
-
-            return "redirect:stats";
+            String errorMessage = "Insufficient turns. Please try again.";
+            redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
+            return "redirect:stats/" + opponentUsername;
         }
     }
 
@@ -221,9 +230,8 @@ public class PlayerController {
                 SecurityContextHolder.getContext().getAuthentication();
 
         String username = authentication.getName();
-        Player playerList = playerService.findByUsername(username);
 
-        return playerList;
+        return playerService.findByUsername(username);
     }
 
     @ModelAttribute("player")

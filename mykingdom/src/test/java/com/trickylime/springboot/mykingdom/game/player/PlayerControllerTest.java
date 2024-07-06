@@ -9,6 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Arrays;
 import java.util.List;
@@ -254,7 +255,7 @@ class PlayerControllerTest {
 
         when(playerServiceMock.findByUsername(anyString())).thenReturn(mockedOpponent);
 
-        String viewName = playerControllerMock.opponentStats(mockedPlayer, anyString(), model);
+        String viewName = playerControllerMock.opponentStats(mockedPlayer, anyString(), "", model);
 
         assertEquals("stats", viewName);
         assertEquals(mockedOpponent, model.get("opponent"));
@@ -269,7 +270,9 @@ class PlayerControllerTest {
 
         when(playerServiceMock.findByUsername("")).thenReturn(mockedOpponent);
 
-        String viewName = playerControllerMock.battleOpponent(mockedPlayer, "", 10, model);
+        RedirectAttributes redirectAttributes = null;
+        String viewName = playerControllerMock.battleOpponent(mockedPlayer, "", 10,
+                redirectAttributes, model);
 
         if (isEnoughBattleTurns) {
             assertEquals("battle", viewName);

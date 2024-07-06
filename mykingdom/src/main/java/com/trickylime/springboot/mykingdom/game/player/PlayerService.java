@@ -11,8 +11,8 @@ import java.util.function.Predicate;
 public class PlayerService {
 
     private static List<Player> players = new ArrayList<>();
-    private static int playerCount = 0;
-    static {
+    private int playerCount = 0;
+    {
         players.add(new Player(playerCount++, "admin", "tricky@gmail.com"));
         players.add(new Player(playerCount++, "Cristian", "cristian@gmail.com"));
         players.add(new Player(playerCount++, "Dean", "dean@gmail.com"));
@@ -21,6 +21,7 @@ public class PlayerService {
     }
 
     public Player findByUsername(String username) {
+
         Predicate<? super Player> predicate =
                 player -> player.getUsername().equalsIgnoreCase(username);
 
@@ -28,11 +29,9 @@ public class PlayerService {
                 .filter(predicate)
                 .toList();
 
-        if (!filteredPlayers.isEmpty()) {
-            return filteredPlayers.get(0);
-        } else {
-            throw new NoSuchElementException("Player with username '" + username + "' not found");
-        }
+        if (!filteredPlayers.isEmpty()) return filteredPlayers.get(0);
+
+        throw new NoSuchElementException("Player with username '" + username + "' not found");
     }
 
     public Player addPlayer(String username, String email) {
@@ -251,15 +250,16 @@ public class PlayerService {
             return false;
         }
 
-        if (player.getAttack() > opponent.getDefense()) {
 
-            long gold = (long) (opponent.getGold() * 0.95);
-
-            opponent.setGold(-gold);
-            player.setGold(gold);
+        /*TODO: This needs reworking, list needs to be set up different as we need a new battle for every battle
+            to keep track off the details of every battle*/
+        if (player.getBattleHistory().containsKey(opponentUsername)) {
+            player.getBattleHistory().get(opponentUsername).incrementCount();
+        } else {
+            player.setBattleHistory(opponentUsername, new Battle(player, opponent, battleTurnsSpent));
         }
 
-        player.setBattleTurns(-battleTurnsSpent);
+        System.out.println(player.getBattleHistory().get(opponentUsername).toString());
         return true;
     }
 
