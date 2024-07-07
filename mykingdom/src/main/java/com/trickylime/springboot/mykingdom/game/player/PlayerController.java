@@ -202,15 +202,20 @@ public class PlayerController {
         Player opponent = playerService.findByUsername(opponentUsername);
         model.put("opponent", opponent);
 
-        if (playerService.battleOpponents(player, opponentUsername, battleTurnsSpent)) {
-            long playerAttackPower = (player.getAttack() * battleTurnsSpent) / 10;
-            model.put("playerAttack", playerAttackPower);
-            return "battle";
-        } else {
-            String errorMessage = "Insufficient turns. Please try again.";
-            redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
-            return "redirect:stats/" + opponentUsername;
+        PlayerService.BattleResult result = playerService.battleOpponents(player, opponentUsername, battleTurnsSpent);
+        String errorMessage = "";
+
+        switch (result) {
+            case SUCCESS -> {
+                long playerAttackPower = (player.getAttack() * battleTurnsSpent) / 10;
+                model.put("playerAttack", playerAttackPower);
+                return "battle";
+            }
+            case INSUFFICIENT_BATTLE_TURNS -> errorMessage = "Insufficient turns. Please try again.";
+            case MAX_BATTLE_COUNT_REACHED -> errorMessage = "You've attacked this poor player too much. Please wait and try again.";
         }
+        redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
+        return "redirect:stats/" + opponentUsername;
     }
 
     @RequestMapping(value = "spy", method = RequestMethod.POST)

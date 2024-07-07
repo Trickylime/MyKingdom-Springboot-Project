@@ -6,7 +6,8 @@ import com.trickylime.springboot.mykingdom.game.player.upgrades.Upgrades;
 import com.trickylime.springboot.mykingdom.game.player.villagers.Villagers;
 import com.trickylime.springboot.mykingdom.game.player.weapons.Weapons;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
 
@@ -21,7 +22,8 @@ public class Player {
     private final Weapons weapons;
     private final Upgrades upgrades;
     private final Science science;
-    private HashMap<String, Battle> battleHistory;
+    private List<Battle> attackHistory;
+    private List<Battle> defenseHistory;
 
     public Player(int id, String username, String email) {
         this.id = id;
@@ -35,7 +37,8 @@ public class Player {
         this.weapons = new Weapons();
         this.upgrades = new Upgrades();
         this.science = new Science();
-        this.battleHistory = new HashMap<>();
+        this.attackHistory = new ArrayList<>();
+        this.defenseHistory = new ArrayList<>();
     }
 
     public String getUsername() {
@@ -146,13 +149,20 @@ public class Player {
         return science;
     }
 
-    public HashMap<String, Battle> getBattleHistory() {
-        return battleHistory;
+    public List<Battle> getAttackHistory() {
+        return attackHistory;
     }
 
+    public void addAttackHistory(Battle battle) {
+        this.attackHistory.add(battle);
+    }
 
-    public void setBattleHistory(String opponentName, Battle battle) {
-        this.battleHistory.put(opponentName, battle);
+    public List<Battle> getDefenseHistory() {
+        return defenseHistory;
+    }
+
+    public void addDefenseHistory(Battle battle) {
+        this.attackHistory.add(battle);
     }
 
     @Override

@@ -242,25 +242,42 @@ public class PlayerService {
         return false;
     }
 
-    public boolean battleOpponents(Player player, String opponentUsername, int battleTurnsSpent) {
+
+    public enum BattleResult {
+        SUCCESS,
+        INSUFFICIENT_BATTLE_TURNS,
+        MAX_BATTLE_COUNT_REACHED
+    }
+
+    public BattleResult battleOpponents(Player player, String opponentUsername, int battleTurnsSpent) {
 
         Player opponent = findByUsername(opponentUsername);
+        int opponentBattleCount = 0;
+
+
+        //TODO: this isn;t work as intended, please fix
+        for (int i = 0; i < opponent.getDefenseHistory().size(); i++) {
+            if (opponent.getDefenseHistory().get(i).getPlayer() == player) {
+                opponentBattleCount++;
+                if (opponentBattleCount >= 5) break;
+            }
+        }
 
         if (battleTurnsSpent > player.getBattleTurns()) {
-            return false;
+            return BattleResult.INSUFFICIENT_BATTLE_TURNS;
+        }
+
+        if (opponentBattleCount == 5) {
+            return BattleResult.MAX_BATTLE_COUNT_REACHED;
         }
 
 
-        /*TODO: This needs reworking, list needs to be set up different as we need a new battle for every battle
-            to keep track off the details of every battle*/
-        if (player.getBattleHistory().containsKey(opponentUsername)) {
-            player.getBattleHistory().get(opponentUsername).incrementCount();
-        } else {
-            player.setBattleHistory(opponentUsername, new Battle(player, opponent, battleTurnsSpent));
-        }
+        Battle battle = new Battle(player, opponent, battleTurnsSpent);
+        player.addAttackHistory(battle);
+        opponent.addDefenseHistory(battle);
 
-        System.out.println(player.getBattleHistory().get(opponentUsername).toString());
-        return true;
+        System.out.println(battle);
+        return BattleResult.SUCCESS;
     }
 
     public boolean spyOnOpponents(Player player, String opponentUsername) {
