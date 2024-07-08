@@ -207,8 +207,8 @@ public class PlayerController {
 
         switch (result) {
             case SUCCESS -> {
-                long playerAttackPower = (player.getAttack() * battleTurnsSpent) / 10;
-                model.put("playerAttack", playerAttackPower);
+                String battleResults = player.getAttackHistory().get(player.getAttackHistory().size() - 1).toHTML();
+                model.put("battleResults", battleResults);
                 return "battle";
             }
             case INSUFFICIENT_BATTLE_TURNS -> errorMessage = "Insufficient turns. Please try again.";

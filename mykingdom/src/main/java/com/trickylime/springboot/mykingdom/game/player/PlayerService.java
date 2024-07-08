@@ -252,19 +252,17 @@ public class PlayerService {
     public BattleResult battleOpponents(Player player, String opponentUsername, int battleTurnsSpent) {
 
         Player opponent = findByUsername(opponentUsername);
+
+        if (battleTurnsSpent > player.getBattleTurns()) {
+            return BattleResult.INSUFFICIENT_BATTLE_TURNS;
+        }
+
         int opponentBattleCount = 0;
-
-
-        //TODO: this isn;t work as intended, please fix
         for (int i = 0; i < opponent.getDefenseHistory().size(); i++) {
             if (opponent.getDefenseHistory().get(i).getPlayer() == player) {
                 opponentBattleCount++;
                 if (opponentBattleCount >= 5) break;
             }
-        }
-
-        if (battleTurnsSpent > player.getBattleTurns()) {
-            return BattleResult.INSUFFICIENT_BATTLE_TURNS;
         }
 
         if (opponentBattleCount == 5) {

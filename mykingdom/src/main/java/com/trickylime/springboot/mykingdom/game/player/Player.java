@@ -162,7 +162,7 @@ public class Player {
     }
 
     public void addDefenseHistory(Battle battle) {
-        this.attackHistory.add(battle);
+        this.defenseHistory.add(battle);
     }
 
     @Override

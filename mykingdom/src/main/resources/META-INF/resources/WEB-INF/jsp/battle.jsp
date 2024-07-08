@@ -6,9 +6,9 @@
     <hr>
     <div>You lead your army in to battle!</div>
     </br>
-    <div>your forces deal ${playerAttack} damage!</div>
-    <div>${opponent.username}&apos;s defenses deal ${opponent.defense} damage!</div>
-    </br>
-    <div>Your army was defeated.</div>
+    <div style="text-align: center;"> <!-- Center the text -->
+        <pre><b style="font-size: 20px; color: red;">${battleResults}</b></pre>
+    </div>
+
 </div>
 <%@ include file="common/footer.jspf" %>

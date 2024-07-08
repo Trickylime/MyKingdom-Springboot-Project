@@ -9,20 +9,11 @@
 <%@ include file="common/player-resource-bar.jspf" %>
 <div class="container">
 
-    <h1>Upgrades</h1>
+    <h1>Rankings</h1>
 
     <div>
-        Spend your gold to upgrade your stats by +3% per level for your kingdom. </br>
+        Check out where you rank on the leaderboard and choose players you want to attack or spy on! </br>
     </div>
-
-    </br>
-
-    <div style="text-align: center;"> <!-- Center the text -->
-        <pre><b style="font-size: 20px; color: red;">${errorMessage}</b></pre> <!-- Increase font size and change color -->
-    </div>
-
-
-    <div><b>Current Gold Supply:</b> ${player.gold}</div>
 
     </br>
 

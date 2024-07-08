@@ -66,10 +66,21 @@ public class Battle {
         this.count++;
     }
 
+    public String toHTML() {
+        return """
+                <div>your forces deal %d damage!</div>
+                </br>
+                <div>%s's defenses deal %d damage!</div>
+                </br>
+                <div>You %s the battle! %s
+                """.formatted(attack, opponent.getUsername(), defense,
+                win ? "won" : "lost", win ? "You stole " + gold + " gold!" : "");
+    }
+
     @Override
     public String toString() {
         return """
-                %s battles %s
+                %s battles %s 
                 %s deals %d damage
                 %s defends %d damage
                 %s %s %d gold!
