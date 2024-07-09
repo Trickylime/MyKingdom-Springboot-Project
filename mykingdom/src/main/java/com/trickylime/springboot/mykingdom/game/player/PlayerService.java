@@ -242,6 +242,16 @@ public class PlayerService {
         return false;
     }
 
+    public int calculateBattleCount(Player player, Player opponent) {
+        int opponentBattleCount = 0;
+        for (int i = 0; i < opponent.getDefenseHistory().size(); i++) {
+            if (opponent.getDefenseHistory().get(i).getPlayer() == player) {
+                opponentBattleCount++;
+                if (opponentBattleCount >= 5) break;
+            }
+        }
+        return opponentBattleCount;
+    }
 
     public enum BattleResult {
         SUCCESS,
@@ -257,18 +267,9 @@ public class PlayerService {
             return BattleResult.INSUFFICIENT_BATTLE_TURNS;
         }
 
-        int opponentBattleCount = 0;
-        for (int i = 0; i < opponent.getDefenseHistory().size(); i++) {
-            if (opponent.getDefenseHistory().get(i).getPlayer() == player) {
-                opponentBattleCount++;
-                if (opponentBattleCount >= 5) break;
-            }
-        }
-
-        if (opponentBattleCount == 5) {
+        if (calculateBattleCount(player, opponent) == 5) {
             return BattleResult.MAX_BATTLE_COUNT_REACHED;
         }
-
 
         Battle battle = new Battle(player, opponent, battleTurnsSpent);
         player.addAttackHistory(battle);

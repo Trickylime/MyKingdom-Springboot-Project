@@ -11,7 +11,6 @@
     </div>
 
     </br>
-    </br>
 
     <h1>Army Statistics</h1>
     <div class="row">

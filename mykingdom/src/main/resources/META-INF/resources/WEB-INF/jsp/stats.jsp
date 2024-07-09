@@ -3,13 +3,58 @@
 <%@ include file="common/player-resource-bar.jspf" %>
 <div class="container">
 
-    <hr>
-    <h1>Player Stats</h1>
-    </br>
-    <div class="row">
-        <div class="col-md-3">Username: </div>
-        <div class="col-md-9">${opponent.username}</div>
 
+    <h1>Attack/Spy</h1>
+    <div>
+        Spend your Battle Turns to attack the player and attempt to steal their gold! </br>
+         > 10% of you attack power per Battle Turn spent.
+        </br>
+        </br>
+        Spy on your opponent to gain more information on their army and resources. </br>
+         > some information here to make the page look nice
+    </div>
+
+    </br>
+
+    <div style="text-align: center;"> <!-- Center the text -->
+        <pre><b style="font-size: 20px; color: red;">${errorMessage}</b></pre> <!-- Increase font size and change color -->
+    </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="fixed-width">Opponent</th>
+                    <th class="fixed-width">Raid For Gold</th>
+                    <th class="fixed-width">Infiltrate For More Stats</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>${opponent.username}</td>
+                    <td>
+                        <span style="display: inline-block;">Battle Turns:</span>
+                        <input type="number" name="battleTurnsSpent" value="1" required min="1" max="10" size="5" style="display: inline-block;"/>
+                        <form:form method="post" action="../battle" style="display: inline-block;">
+                            <input type="submit" value="ATTACK" style="display: inline-block;">
+                            <input type="hidden" name="opponentUsername" value="${opponent.username}">
+                        </form:form>
+                        </br>
+                        > Attacks in last 24 hours ${battleCount}/5 <
+                    </td>
+                    <td>
+                        <form:form method="post" action="../spy">
+                            <input type="submit" value="SPY" >
+                            <input type="hidden" name="opponentUsername" value="${opponent.username}">
+                        </form:form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </br>
+
+    <h1>Player Stats</h1>
+    <div class="row">
         <div class="col-md-3">Rank: </div>
         <div class="col-md-9">(PlayerRank Here) </div>
 
@@ -19,40 +64,5 @@
         <div class="col-md-3">Population: </div>
         <div class="col-md-9">${opponent.population}</div>
     </div>
-    </br>
-    <hr>
-    </br>
-
-    <div style="text-align: center;"> <!-- Center the text -->
-        <pre><b style="font-size: 20px; color: red;">${errorMessage}</b></pre> <!-- Increase font size and change color -->
-    </div>
-
-    <div class="row">
-        <div class="col-md-3"><h1>Raid For Gold</h1></div>
-        <div class="col-md-9">Raids in the last 24 hours 0/5</div>
-        </br>
-        <div class="col-md-3"><b>Battle Turns</b></div>
-        <form:form method="post" action="../battle">
-            <div class="col-md-4">
-                <input type="number" name="battleTurnsSpent" value="1" required min="1" max="10" size="5"/>
-            </div>
-            <div class="col-md-5">
-                <input type="submit" value="ATTACK" >
-                <input type="hidden" name="opponentUsername" value="${opponent.username}">
-            </div>
-        </form:form>
-    </div>
-
-    </br>
-
-    <h1>Infiltrate For More Stats</h1>
-    <div>
-        <form:form method="post" action="../spy">
-            <input type="submit" value="SPY" >
-            <input type="hidden" name="opponentUsername" value="${opponent.username}">
-        </form:form>
-    </div>
-
-    </br>
     <hr>
 <%@ include file="common/footer.jspf" %>

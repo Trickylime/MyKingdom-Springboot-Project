@@ -186,6 +186,7 @@ public class PlayerController {
 
         Player opponent = playerService.findByUsername(username);
         model.put("opponent", opponent);
+        model.put("battleCount", playerService.calculateBattleCount(player, opponent));
 
         if (errorMessage != null) {
             model.put("errorMessage", errorMessage);
