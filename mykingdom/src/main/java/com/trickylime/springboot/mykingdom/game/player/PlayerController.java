@@ -226,9 +226,23 @@ public class PlayerController {
         Player opponent = playerService.findByUsername(opponentUsername);
         model.put("opponent", opponent);
 
-        playerService.spyOnOpponents(player, opponentUsername);
+        if (playerService.spyOnOpponents(player, opponent)) {
+            return "spy";
+        }
 
-        return "spy";
+        return "caught";
+    }
+
+    @RequestMapping(value = "history")
+    public String combatHistory(@ModelAttribute("player") Player player, ModelMap model) {
+
+        List<Battle> attackHistory = player.getAttackHistory();
+        model.put("attackHistory", attackHistory);
+
+        List<Battle> defenseHistory = player.getDefenseHistory();
+        model.put("defenseHistory", defenseHistory);
+
+        return "history";
     }
 
     Player getLoggedInUser() {

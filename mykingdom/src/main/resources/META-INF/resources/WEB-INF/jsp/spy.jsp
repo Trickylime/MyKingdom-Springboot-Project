@@ -8,6 +8,9 @@
     <div class="row">
         <div class="col-md-3"><b>Username</b></div>
         <div class="col-md-9"><u><a href="/stats/${name}">${opponent.username}</a></u></div>
+
+        <div class="col-md-3"><b>Rank</b></div>
+        <div class="col-md-9"><u>##</u></div>
     </div>
 
     </br>
@@ -42,7 +45,7 @@
         <div class="col-md-9">${opponent.food}</div>
 
         <div class="col-md-3"><b>Farming Income</b></div>
-        <div class="col-md-9">${opponent.goldIncome}</div>
+        <div class="col-md-9">${opponent.farmingIncome}</div>
     </div>
     </br>
     <div class="row">

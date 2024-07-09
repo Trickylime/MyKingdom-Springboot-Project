@@ -33,8 +33,8 @@
                     <td>${opponent.username}</td>
                     <td>
                         <span style="display: inline-block;">Battle Turns:</span>
-                        <input type="number" name="battleTurnsSpent" value="1" required min="1" max="10" size="5" style="display: inline-block;"/>
                         <form:form method="post" action="../battle" style="display: inline-block;">
+                            <input type="number" name="battleTurnsSpent" value="1" required min="1" max="10" size="5" style="display: inline-block;"/>
                             <input type="submit" value="ATTACK" style="display: inline-block;">
                             <input type="hidden" name="opponentUsername" value="${opponent.username}">
                         </form:form>

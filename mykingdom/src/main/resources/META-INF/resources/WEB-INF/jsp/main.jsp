@@ -45,7 +45,7 @@
         <div class="col-md-9">${player.food}</div>
 
         <div class="col-md-3"><b>Farming Income</b></div>
-        <div class="col-md-9">${player.goldIncome}</div>
+        <div class="col-md-9">${player.farmingIncome}</div>
     </div>
     </br>
     <div class="row">

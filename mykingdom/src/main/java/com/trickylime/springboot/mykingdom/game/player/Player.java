@@ -109,7 +109,7 @@ public class Player {
         long workers = villagers.getWorkers();
         long farmers = villagers.getFarmers();
 
-        return (long) ((workers * 3) + (farmers * 0.1));
+        return (long) ((workers * 2) + (farmers * 0.1));
     }
 
     public long getPopulation() {

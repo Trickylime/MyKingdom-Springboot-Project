@@ -279,7 +279,8 @@ public class PlayerService {
         return BattleResult.SUCCESS;
     }
 
-    public boolean spyOnOpponents(Player player, String opponentUsername) {
-        return true;
+    public boolean spyOnOpponents(Player player, Player opponent) {
+
+        return player.getSpy() > opponent.getSpy();
     }
 }
