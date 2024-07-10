@@ -2,8 +2,8 @@ package com.trickylime.springboot.mykingdom.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.core.userdetails.User;
@@ -16,6 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import java.util.function.Function;
 
 @Configuration
+@EnableWebSecurity
 public class SpringSecurityConfiguration  {
 
     @Bean
@@ -49,10 +50,23 @@ public class SpringSecurityConfiguration  {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http.authorizeHttpRequests(
-                auth -> auth.anyRequest().authenticated());
+        http.authorizeHttpRequests(auth -> auth
+                .requestMatchers("/loginpage", "/login", "/WEB-INF/jsp/loginpage.jsp").permitAll() // Allow access to the custom login page and the default login processing URL
+                .anyRequest().authenticated()
+        );
 
-        http.formLogin(Customizer.withDefaults());
+        http.formLogin(form -> form
+                .loginPage("/loginpage") // Specify the custom login page
+                .loginProcessingUrl("/login") // Ensure the default login processing URL is specified
+                .defaultSuccessUrl("/WEB-INF/jsp/main.jsp")
+                .permitAll()
+        );
+
+        http.logout(logout -> logout
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/loginpage?logout") // Redirect to custom login page on logout
+                .permitAll()
+        );
 
         http.csrf(AbstractHttpConfigurer::disable);
 

@@ -20,6 +20,13 @@ public class WelcomeController {
         return "welcome";
     }
 
+//    @RequestMapping(value = "/login", method = RequestMethod.GET)
+//    public String gotoLoginPage(ModelMap model) {//@RequestParam String name, ModelMap model
+//
+//        model.put("name", getLoggedinUsername());
+//        return "welcome";
+//    }
+
     private String getLoggedinUsername() {
 
         Authentication authentication =
