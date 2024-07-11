@@ -49,28 +49,25 @@ public class SpringSecurityConfiguration  {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
-        http.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/loginpage", "/login", "/WEB-INF/jsp/loginpage.jsp").permitAll() // Allow access to the custom login page and the default login processing URL
-                .anyRequest().authenticated()
-        );
-
-        http.formLogin(form -> form
-                .loginPage("/loginpage") // Specify the custom login page
-                .loginProcessingUrl("/login") // Ensure the default login processing URL is specified
-                .defaultSuccessUrl("/WEB-INF/jsp/main.jsp")
-                .permitAll()
-        );
-
-        http.logout(logout -> logout
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/loginpage?logout") // Redirect to custom login page on logout
-                .permitAll()
-        );
-
-        http.csrf(AbstractHttpConfigurer::disable);
-
-        http.headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
+        http
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/loginpage", "/css/**", "/js/**", "/images/**", "/webjars/**", "/WEB-INF/**")
+                        .permitAll() // Allow access to the custom login page and the default login processing URL
+                        .anyRequest().authenticated()
+                )
+                .formLogin(form -> form
+                        .loginPage("/loginpage") // Specify the custom login page
+                        .loginProcessingUrl("/login") // Ensure the default login processing URL is specified
+                        .defaultSuccessUrl("/main", true) // Redirect to main.jsp on successful login, true to enforce redirect after login
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/loginpage?logout") // Redirect to custom login page on logout
+                        .permitAll()
+                )
+                .csrf(AbstractHttpConfigurer::disable) // Disable CSRF for simplicity, enable in production
+                .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable)); // Disable frame options for H2 console
 
         return http.build();
     }

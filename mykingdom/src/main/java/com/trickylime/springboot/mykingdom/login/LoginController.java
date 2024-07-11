@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LoginController {
 
-    @GetMapping("loginpage")
-    public String customLogin() {
+    @GetMapping("/loginpage")
+    public String loginPage() {
         return "loginpage"; // Ensure this matches the view name of your JSP
     }
 }
