@@ -1,6 +1,7 @@
 package com.trickylime.springboot.mykingdom.game;
 
 import com.trickylime.springboot.mykingdom.game.player.Player;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -13,21 +14,20 @@ import java.util.List;
 @Controller
 public class PlayerController {
 
-    private final PlayerService playerService;
+    @Autowired
+    private PlayerService playerService;
 
-    public PlayerController(PlayerService playerService) {
-        this.playerService = playerService;
-    }
+//    public PlayerController(PlayerService playerService) {
+//        this.playerService = playerService;
+//    }
 
     @RequestMapping("main")
     public String listPlayerStats(@ModelAttribute("player") Player player, ModelMap model) {
-
         return "main";
     }
 
     @RequestMapping(value = "villagers", method = RequestMethod.GET)
     public String villagersPage(@ModelAttribute("player") Player player, ModelMap model) {
-
         return "villagers";
     }
 
@@ -185,7 +185,7 @@ public class PlayerController {
                                 @RequestParam(value = "errorMessage", required = false) String errorMessage,
                                 ModelMap model) {
 
-        Player opponent = playerService.findByUsername(username);
+        Player opponent = playerService.findPlayerByUsername(username);
         model.put("opponent", opponent);
         model.put("battleCount", playerService.calculateBattleCount(player, opponent));
 
@@ -201,7 +201,7 @@ public class PlayerController {
                                  @RequestParam String opponentUsername, @RequestParam int battleTurnsSpent,
                                  RedirectAttributes redirectAttributes, ModelMap model) {
 
-        Player opponent = playerService.findByUsername(opponentUsername);
+        Player opponent = playerService.findPlayerByUsername(opponentUsername);
         model.put("opponent", opponent);
 
         PlayerService.BattleResult result = playerService.battleOpponents(player, opponentUsername, battleTurnsSpent);
@@ -224,7 +224,7 @@ public class PlayerController {
     public String spyOnPlayer(@ModelAttribute("player") Player player,
                               @RequestParam String opponentUsername, ModelMap model) {
 
-        Player opponent = playerService.findByUsername(opponentUsername);
+        Player opponent = playerService.findPlayerByUsername(opponentUsername);
         model.put("opponent", opponent);
 
         if (playerService.spyOnOpponents(player, opponent)) {
@@ -246,13 +246,13 @@ public class PlayerController {
         return "history";
     }
 
-    Player getLoggedInUser() {
+    public Player getLoggedInUser() {
         Authentication authentication =
                 SecurityContextHolder.getContext().getAuthentication();
 
         String username = authentication.getName();
 
-        return playerService.findByUsername(username);
+        return playerService.findPlayerByUsername(username);
     }
 
     @ModelAttribute("player")

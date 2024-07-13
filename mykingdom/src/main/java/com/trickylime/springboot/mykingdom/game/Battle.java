@@ -1,18 +1,31 @@
 package com.trickylime.springboot.mykingdom.game;
 
 import com.trickylime.springboot.mykingdom.game.player.Player;
+import jakarta.persistence.*;
 
+@Entity
 public class Battle {
 
-    private final Player player;
-    private final Player opponent;
-    private final int battleTurnsSpent;
-    private final long attack;
-    private final long defense;
-    private final boolean win;
-    private final long gold;
-    private int count;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
+    @ManyToOne
+    @JoinColumn(name = "player_id", nullable = false)
+    private Player player;
+
+    @ManyToOne
+    @JoinColumn(name = "opponent_id", nullable = false)
+    private Player opponent;
+    private int battleTurnsSpent;
+    private long attack;
+    private long defense;
+    private boolean win;
+    private long gold;
+
+    public Battle() {
+        // Default constructor for JPA
+    }
     public Battle(Player player, Player opponent, int battleTurnsSpent) {
         this.player = player;
         this.opponent = opponent;
@@ -21,7 +34,6 @@ public class Battle {
         this.defense = opponent.getDefense();
         this.win = attack > defense;
         this.gold = win ? (long) (opponent.getGold() * 0.95) : 0;
-        this.count = 1;
 
         adjustPlayerValues(this.gold, this.battleTurnsSpent);
     }
@@ -58,14 +70,6 @@ public class Battle {
 
     public long getGold() {
         return gold;
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void incrementCount() {
-        this.count++;
     }
 
     public String toHTML() {

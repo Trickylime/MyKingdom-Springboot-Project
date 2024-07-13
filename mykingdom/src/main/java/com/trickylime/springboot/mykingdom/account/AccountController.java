@@ -22,26 +22,23 @@ public class AccountController {
     }
 
     @RequestMapping(value = "createAccount", method = RequestMethod.POST)
-    public String createAccount(@RequestParam String email, @RequestParam String username, @RequestParam String password,
-                                ModelMap model) {
+    public String createAccount(@RequestParam("email") String email, @RequestParam("username") String username,
+            @RequestParam("password") String password, ModelMap model) {
 
-        AccountService.ValidAccountResult result = accountService.createAccount(email, username, password);
-        switch (result) {
-            case INVALID_EMAIL_CHARACTERS -> {
-                return "redirect:main";
+        try {
+            accountService.createAccount(email, username, password);
+            return "success";
+        } catch (IllegalArgumentException e) {
+            String message = e.getMessage();
+            if (message.contains("Email")) {
+                model.addAttribute("errorMessageEmail", message);
+            } else if (message.contains("Username")) {
+                model.addAttribute("errorMessageUsername", message);
+            } else if (message.contains("Password")) {
+                model.addAttribute("errorMessagePassword", message);
             }
-            case INVALID_USERNAME_CHARACTERS -> {
-                return "redirect:main";
-            }
-            case INVALID_EMAIL_IN_USE -> {
-                return "redirect:main";
-            }
-            case INVALID_USERNAME_IN_USE -> {
-                return "redirect:main";
-            }
+            return "redirect:loginpage";
         }
-
-        return "redirect:loginpage";
     }
 
 }

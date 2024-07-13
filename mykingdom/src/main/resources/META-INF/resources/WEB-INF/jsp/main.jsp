@@ -7,7 +7,7 @@
 
     <div class="row">
         <div class="col-md-3"><b>Username</b></div>
-        <div class="col-md-9"><u><a href="/stats/${name}">${name}</a></u></div>
+        <div class="col-md-9"><u><a href="/stats/${name}">${player.username}</a></u></div>
         <div class="col-md-3"><b>E-mail Address</b></div>
         <div class="col-md-9">jackmcgeown@yahoo.co.uk</div>
     </div>

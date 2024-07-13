@@ -1,5 +1,8 @@
 package com.trickylime.springboot.mykingdom.game.player.villagers;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class Villagers {
 
     private long workers = 0;

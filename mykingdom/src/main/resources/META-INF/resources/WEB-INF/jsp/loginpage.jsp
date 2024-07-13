@@ -82,20 +82,33 @@
         </div>
         <div id="right">
             <h1>Create Account</h1>
-            <form:form method="post" action="createAccount">
+            <form method="post" action="createAccount">
                 <div>
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email"/>
+                    <input type="email" id="email" name="email" required />
                 </div>
-                <b "color: red;">${errorMessageEmail}</b>
+                <div style="color: red;">
+                    <c:if test="${not empty errorMessageEmail}">
+                        <b>${errorMessageEmail}</b>
+                    </c:if>
+                </div>
                 <div>
                     <label for="username">Username:</label>
-                    <input type="text" id="username" name="username"/>
+                    <input type="text" id="username" name="username" required />
                 </div>
-                <b "color: red;">${errorMessageUsername}</b>
+                <div style="color: red;">
+                    <c:if test="${not empty errorMessageUsername}">
+                        <b>${errorMessageUsername}</b>
+                    </c:if>
+                </div>
                 <div>
                     <label for="password">Password:</label>
-                    <input type="password" id="password" name="password"/>
+                    <input type="password" id="password" name="password" required />
+                </div>
+                <div style="color: red;">
+                    <c:if test="${not empty errorMessagePassword}">
+                        <b>${errorMessagePassword}</b>
+                    </c:if>
                 </div>
                 <div>
                     <button type="submit">Create Account</button>

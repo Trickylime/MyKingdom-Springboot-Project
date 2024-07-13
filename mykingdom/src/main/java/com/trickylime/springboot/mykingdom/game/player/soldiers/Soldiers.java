@@ -1,22 +1,29 @@
 package com.trickylime.springboot.mykingdom.game.player.soldiers;
 
-import java.util.Arrays;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Embeddable;
 
+import java.util.List;
+
+@Embeddable
 public class Soldiers {
 
-    private final String[] attackerNames = {"Swordsmen", "Great Swordsmen", "Master Swordsmen"};
-    private final String[] defenderNames = {"Bowmen", "Great Bowmen", "Master Bowmen"};
+    private final List<String> attackerNames = List.of("Swordsmen", "Great Swordsmen", "Master Swordsmen");
+    private final List<String> defenderNames = List.of("Bowmen", "Great Bowmen", "Master Bowmen");
 
     private long apprenticeWarriors = 1;
     private final long apprenticeWarriorsCost = 20;
     private final long apprenticeWarriorsStrength = 1;
 
-    private long[] attackers = {1, 0, 0};
-    private long[] defenders = {1, 0, 0};
+    @ElementCollection
+    private List<Long> attackers = List.of(1L, 0L, 0L);
+    @ElementCollection
+    private List<Long> defenders = List.of(1L, 0L, 0L);
 
-    private final long[] soldiersCost = {100, 1000, 10_000};
-
-    private final long[] soldiersStrength = {10, 200, 5000};
+    @ElementCollection
+    private final List<Long> soldiersCost = List.of(100L, 1000L, 10_000L);
+    @ElementCollection
+    private final List<Long> soldiersStrength = List.of(10L, 200L, 5000L);
 
     public Soldiers() {
     }
@@ -29,12 +36,11 @@ public class Soldiers {
         return calculateSoldierStrength(defenders);
     }
 
-    public long calculateSoldierStrength(long[] soldiers) {
-
+    public long calculateSoldierStrength(List<Long> soldiers) {
         long soldierStrengthTotal = 0;
 
-        for (int i = 0; i < soldiers.length; i++) {
-            soldierStrengthTotal += soldiers[i] * soldiersStrength[i];
+        for (int i = 0; i < soldiers.size(); i++) {
+            soldierStrengthTotal += soldiers.get(i) * soldiersStrength.get(i);
         }
 
         soldierStrengthTotal += apprenticeWarriors * apprenticeWarriorsStrength;
@@ -43,11 +49,11 @@ public class Soldiers {
     }
 
     public String getAttackerNames(int index) {
-        return attackerNames[index];
+        return attackerNames.get(index);
     }
 
     public String getDefenderNames(int index) {
-        return defenderNames[index];
+        return defenderNames.get(index);
     }
 
     public long getApprenticeWarriors() {
@@ -67,33 +73,32 @@ public class Soldiers {
     }
 
     public long getAttackers(int level) {
-        return attackers[level];
+        return attackers.get(level);
     }
 
     public void setAttackers(int level, long attackers) {
-        this.attackers[level] += attackers;
+        this.attackers.set(level, this.attackers.get(level) + attackers);
     }
 
     public long getDefenders(int level) {
-        return defenders[level];
+        return defenders.get(level);
     }
 
     public void setDefenders(int level, long defenders) {
-        this.defenders[level] += defenders;
+        this.defenders.set(level, this.defenders.get(level) + defenders);
     }
 
     public long getSoldiersCost(int level) {
-        return soldiersCost[level];
+        return soldiersCost.get(level);
     }
 
     public long getSoldiersStrength(int level) {
-        return soldiersStrength[level];
+        return soldiersStrength.get(level);
     }
 
     public long getTotal(String request) {
-
-        long attackSoldiersTotal = Arrays.stream(attackers).sum();
-        long defenseSoldiersTotal = Arrays.stream(defenders).sum();
+        long attackSoldiersTotal = attackers.stream().mapToLong(Long::longValue).sum();
+        long defenseSoldiersTotal = defenders.stream().mapToLong(Long::longValue).sum();
 
         return switch (request) {
             case "attack" -> attackSoldiersTotal;

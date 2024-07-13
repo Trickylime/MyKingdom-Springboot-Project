@@ -1,5 +1,8 @@
 package com.trickylime.springboot.mykingdom.game.player.upgrades;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class Upgrades {
 
     private int attackLevel = 0;

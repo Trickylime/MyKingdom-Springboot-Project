@@ -30,9 +30,9 @@ class PlayerServiceTest {
 
         // Create a list of players to be used for filtering
         List<Player> players = List.of(
-                new Player(1, "admin", "admin@gmail.com"),
-                new Player(2, "user1", "user1@gmail.com"),
-                new Player(3, "user2", "user2@gmail.com")
+                new Player("admin", "admin@gmail.com"),
+                new Player("user1", "user1@gmail.com"),
+                new Player("user2", "user2@gmail.com")
         );
 
 // Mock the behavior of the findByUsername() method directly

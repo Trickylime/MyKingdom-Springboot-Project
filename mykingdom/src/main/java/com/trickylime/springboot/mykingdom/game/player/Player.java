@@ -6,15 +6,16 @@ import com.trickylime.springboot.mykingdom.game.player.soldiers.Soldiers;
 import com.trickylime.springboot.mykingdom.game.player.upgrades.Upgrades;
 import com.trickylime.springboot.mykingdom.game.player.villagers.Villagers;
 import com.trickylime.springboot.mykingdom.game.player.weapons.Weapons;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Player {
-    @GeneratedValue
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private int id;
     private String username;
@@ -22,16 +23,27 @@ public class Player {
     private long food = 0;
     private long gold = 0;
     private int battleTurns = 0;
-    private final Villagers villagers;
-    private final Soldiers soldiers;
-    private final Weapons weapons;
-    private final Upgrades upgrades;
-    private final Science science;
+    @Embedded
+    private Villagers villagers;
+    @Embedded
+    private Soldiers soldiers;
+    @Embedded
+    private Weapons weapons;
+    @Embedded
+    private Upgrades upgrades;
+    @Embedded
+    private Science science;
+
+    @OneToMany(mappedBy = "player")
     private List<Battle> attackHistory;
+
+    @OneToMany(mappedBy = "player")
     private List<Battle> defenseHistory;
 
-    public Player(int id, String username, String email) {
-        this.id = id;
+    public Player() {
+    }
+
+    public Player( String username, String email) {
         this.username = username;
         this.email = email;
         this.gold = 1_000_000;

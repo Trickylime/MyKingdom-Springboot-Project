@@ -1,6 +1,9 @@
 package com.trickylime.springboot.mykingdom.game;
 
 import com.trickylime.springboot.mykingdom.game.player.Player;
+import com.trickylime.springboot.mykingdom.game.player.PlayerRepository;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -9,17 +12,12 @@ import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
 @Service
+@Transactional
 public class PlayerService {
 
+    @Autowired
+    private PlayerRepository playerRepository;
     private static List<Player> players = new ArrayList<>();
-    private int playerCount = 0;
-    {
-        players.add(new Player(playerCount++, "admin", "tricky@gmail.com"));
-        players.add(new Player(playerCount++, "Cristian", "cristian@gmail.com"));
-        players.add(new Player(playerCount++, "Dean", "dean@gmail.com"));
-        players.add(new Player(playerCount++, "Steve", "steve@gmail.com"));
-        players.add(new Player(playerCount++, "Katy", "katy@gmail.com"));
-    }
 
     public Player findByUsername(String username) {
 
@@ -35,16 +33,12 @@ public class PlayerService {
         throw new NoSuchElementException("Player with username '" + username + "' not found");
     }
 
-    public Player addPlayer(String username, String email) {
-
-        Player player = new Player(playerCount++, username, email);
-        players.add(player);
-
-        return player;
+    public Player findPlayerByUsername(String username) {
+        return playerRepository.findByUsername(username).orElse(null);
     }
 
     public List<Player> getAllPlayersList() {
-        return players;
+        return playerRepository.findAll();
     }
 
     public boolean buyVillagers(Player player, int workers, int farmers, int spies) {
@@ -260,9 +254,10 @@ public class PlayerService {
         MAX_BATTLE_COUNT_REACHED
     }
 
+
     public BattleResult battleOpponents(Player player, String opponentUsername, int battleTurnsSpent) {
 
-        Player opponent = findByUsername(opponentUsername);
+        Player opponent = findPlayerByUsername(opponentUsername);
 
         if (battleTurnsSpent > player.getBattleTurns()) {
             return BattleResult.INSUFFICIENT_BATTLE_TURNS;

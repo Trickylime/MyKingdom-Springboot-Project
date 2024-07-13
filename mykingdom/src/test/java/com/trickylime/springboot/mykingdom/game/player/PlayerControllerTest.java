@@ -238,9 +238,9 @@ class PlayerControllerTest {
     void playerRankings_Test() {
 
         List<Player> mockPlayerList = Arrays.asList(
-                new Player(1, "MockOne", "mockone@mock.com"),
-                new Player(2, "MockTwo", "mocktwo@mock.com"),
-                new Player(3, "MockThree", "mockthree@mock.com")
+                new Player("MockOne", "mockone@mock.com"),
+                new Player("MockTwo", "mocktwo@mock.com"),
+                new Player("MockThree", "mockthree@mock.com")
         );
 
         when(playerServiceMock.getAllPlayersList()).thenReturn(mockPlayerList);

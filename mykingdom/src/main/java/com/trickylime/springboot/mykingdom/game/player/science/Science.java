@@ -1,5 +1,8 @@
 package com.trickylime.springboot.mykingdom.game.player.science;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class Science {
 
     private boolean[] attackersUnlocked = {true, false, false};

@@ -1,5 +1,6 @@
 package com.trickylime.springboot.mykingdom.account;
 
+import com.trickylime.springboot.mykingdom.game.player.Player;
 import com.trickylime.springboot.mykingdom.game.player.PlayerRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,29 +13,41 @@ public class AccountService {
 
     private PlayerRepository playerRepository;
 
+    private static int playerCount = 1;
     public AccountService(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;
+
+        savePlayer(new Player("Admin", "tricky@gmail.com"));
+        savePlayer(new Player("Cristian", "cristian@gmail.com"));
+        savePlayer(new Player("Dean", "dean@gmail.com"));
+        savePlayer(new Player("Steve", "steve@gmail.com"));
+        savePlayer(new Player("Katy", "katy@gmail.com"));
+
     }
 
-    public enum ValidAccountResult {
-        SUCCESS,
-        INVALID_EMAIL_CHARACTERS,
-        INVALID_EMAIL_IN_USE,
-        INVALID_USERNAME_CHARACTERS,
-        INVALID_USERNAME_IN_USE
+    public Player savePlayer(Player player) {
+        return playerRepository.save(player);
     }
 
-    public ValidAccountResult createAccount(String email, String username, String password) {
+    public Player createAccount(String email, String username, String password) {
 
-        /*TODO: This isn't going to work, need to return player
-        */
 
-        if (!isEmailValid(email)) return ValidAccountResult.INVALID_EMAIL_CHARACTERS;
-        if (!isUsernameValid(username)) return ValidAccountResult.INVALID_USERNAME_CHARACTERS;
-        if (isEmailTaken(email)) return ValidAccountResult.INVALID_EMAIL_IN_USE;
-        if (isUsernameTaken(username)) return ValidAccountResult.INVALID_USERNAME_IN_USE;
+        validateAccountDetails(email, username, password);
 
-        return ValidAccountResult.SUCCESS;
+        return playerRepository.save(new Player(username, email));
+    }
+
+    private void validateAccountDetails(String email, String username, String password) {
+        if (!isEmailValid(email)) throw new IllegalArgumentException("Invalid Email");
+
+        if (!isUsernameValid(username))
+            throw new IllegalArgumentException("Invalid Username, username must consist of upper or lower case letters, '.', '-', '_'");
+
+        if (isEmailTaken(email)) throw new IllegalArgumentException("Email is already in use");
+
+        if (isUsernameTaken(username)) throw new IllegalArgumentException("Username is already in use");
+
+        if (password.length() < 6) throw new IllegalArgumentException("Password must be at least 6 characters long");
     }
 
     public static boolean isValid(String input, String patternStr) {
