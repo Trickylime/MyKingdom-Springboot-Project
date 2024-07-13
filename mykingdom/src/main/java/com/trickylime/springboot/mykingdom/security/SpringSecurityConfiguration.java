@@ -51,14 +51,14 @@ public class SpringSecurityConfiguration  {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/loginpage", "/css/**", "/js/**", "/images/**", "/webjars/**", "/WEB-INF/**")
-                        .permitAll() // Allow access to the custom login page and the default login processing URL
+                        .requestMatchers("/login", "/css/**", "/js/**", "/images/**", "/webjars/**", "/WEB-INF/**")
+                        .permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/loginpage") // Specify the custom login page
+                        .loginPage("/login") // custom login page
                         .loginProcessingUrl("/login") // Ensure the default login processing URL is specified
-                        .defaultSuccessUrl("/main", true) // Redirect to main.jsp on successful login, true to enforce redirect after login
+                        .defaultSuccessUrl("/main", true) // Redirect to main.jsp
                         .permitAll()
                 )
                 .logout(logout -> logout

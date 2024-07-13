@@ -1,5 +1,6 @@
-package com.trickylime.springboot.mykingdom.game.player;
+package com.trickylime.springboot.mykingdom.game;
 
+import com.trickylime.springboot.mykingdom.game.player.Player;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

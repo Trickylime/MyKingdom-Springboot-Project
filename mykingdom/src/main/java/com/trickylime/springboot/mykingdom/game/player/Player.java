@@ -1,15 +1,20 @@
 package com.trickylime.springboot.mykingdom.game.player;
 
+import com.trickylime.springboot.mykingdom.game.Battle;
 import com.trickylime.springboot.mykingdom.game.player.science.Science;
 import com.trickylime.springboot.mykingdom.game.player.soldiers.Soldiers;
 import com.trickylime.springboot.mykingdom.game.player.upgrades.Upgrades;
 import com.trickylime.springboot.mykingdom.game.player.villagers.Villagers;
 import com.trickylime.springboot.mykingdom.game.player.weapons.Weapons;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Player {
+    @GeneratedValue
 
     private int id;
     private String username;

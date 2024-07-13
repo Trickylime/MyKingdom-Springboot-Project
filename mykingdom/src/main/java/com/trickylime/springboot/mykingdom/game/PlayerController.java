@@ -1,5 +1,6 @@
-package com.trickylime.springboot.mykingdom.game.player;
+package com.trickylime.springboot.mykingdom.game;
 
+import com.trickylime.springboot.mykingdom.game.player.Player;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -12,7 +13,7 @@ import java.util.List;
 @Controller
 public class PlayerController {
 
-    private PlayerService playerService;
+    private final PlayerService playerService;
 
     public PlayerController(PlayerService playerService) {
         this.playerService = playerService;

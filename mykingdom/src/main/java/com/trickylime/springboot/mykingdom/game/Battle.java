@@ -1,4 +1,6 @@
-package com.trickylime.springboot.mykingdom.game.player;
+package com.trickylime.springboot.mykingdom.game;
+
+import com.trickylime.springboot.mykingdom.game.player.Player;
 
 public class Battle {
 

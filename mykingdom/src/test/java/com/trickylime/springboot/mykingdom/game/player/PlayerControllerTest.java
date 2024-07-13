@@ -1,5 +1,7 @@
 package com.trickylime.springboot.mykingdom.game.player;
 
+import com.trickylime.springboot.mykingdom.game.PlayerController;
+import com.trickylime.springboot.mykingdom.game.PlayerService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
