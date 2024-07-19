@@ -21,7 +21,7 @@ public class PlayerController {
 //        this.playerService = playerService;
 //    }
 
-    @RequestMapping("main")
+    @RequestMapping(value = "main")
     public String listPlayerStats(@ModelAttribute("player") Player player, ModelMap model) {
         return "main";
     }

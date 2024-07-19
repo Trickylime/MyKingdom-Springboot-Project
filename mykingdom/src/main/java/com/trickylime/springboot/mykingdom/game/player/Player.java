@@ -34,10 +34,10 @@ public class Player {
     @Embedded
     private Science science;
 
-    @OneToMany(mappedBy = "player")
+    @OneToMany(mappedBy = "player", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Battle> attackHistory;
 
-    @OneToMany(mappedBy = "player")
+    @OneToMany(mappedBy = "opponent", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Battle> defenseHistory;
 
     public Player() {
